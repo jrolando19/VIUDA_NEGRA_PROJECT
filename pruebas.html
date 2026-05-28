@@ -1,0 +1,278 @@
+<!-- ================= pruebas.html ================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas - InvenTree</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#0d0d0d;
+            color:white;
+            line-height:1.8;
+        }
+
+        header{
+            background:#111;
+            padding:50px;
+            text-align:center;
+            border-bottom:2px solid #ff0000;
+        }
+
+        header h1{
+            color:#ff0000;
+            font-size:50px;
+            margin-bottom:15px;
+        }
+
+        header p{
+            color:#d1d1d1;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+            padding:50px 0;
+        }
+
+        section{
+            margin-bottom:40px;
+            background:#141414;
+            padding:35px;
+            border-radius:15px;
+            border:1px solid #222;
+        }
+
+        h2{
+            color:#ff0000;
+            margin-bottom:20px;
+        }
+
+        p, li{
+            color:#d1d1d1;
+        }
+
+        ul{
+            margin-left:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 25px;
+            background:#ff0000;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#cc0000;
+        }
+
+        .highlight{
+            color:#ff4d4d;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>🧪 Pruebas del Proyecto</h1>
+
+        <p>
+            Pruebas y validaciones documentadas en el repositorio InvenTree.
+        </p>
+
+        <a href="index.html" class="btn">
+            ⬅ Volver al Inicio
+        </a>
+
+    </header>
+
+    <!-- ================= CONTENIDO ================= -->
+
+    <div class="container">
+
+        <section>
+
+            <h2>📌 Sistema de Testing en InvenTree</h2>
+
+            <p>
+                El proyecto Open Source <span class="highlight">InvenTree</span>
+                implementa múltiples mecanismos de pruebas automáticas
+                para garantizar la estabilidad, seguridad
+                y correcto funcionamiento del sistema.
+            </p>
+
+            <p>
+                Estas pruebas permiten detectar errores,
+                validar módulos internos y asegurar
+                la compatibilidad entre componentes.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>⚙️ Pruebas Unitarias</h2>
+
+            <p>
+                InvenTree utiliza pruebas unitarias
+                desarrolladas principalmente con:
+            </p>
+
+            <ul>
+                <li>Python unittest</li>
+                <li>Django Test Framework</li>
+                <li>Pytest</li>
+            </ul>
+
+            <p>
+                Las pruebas unitarias verifican
+                el comportamiento individual
+                de funciones, modelos y módulos del sistema.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>🔗 Pruebas de Integración</h2>
+
+            <p>
+                El proyecto también implementa pruebas
+                de integración para validar
+                la comunicación entre:
+            </p>
+
+            <ul>
+                <li>Backend y Base de Datos.</li>
+                <li>API REST y servicios internos.</li>
+                <li>Módulos de inventario.</li>
+                <li>Gestión de órdenes y proveedores.</li>
+                <li>Sistema de autenticación.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🌐 Pruebas de API</h2>
+
+            <p>
+                InvenTree cuenta con pruebas específicas
+                para validar endpoints de la API REST.
+            </p>
+
+            <p>
+                Estas pruebas verifican:
+            </p>
+
+            <ul>
+                <li>Respuestas HTTP.</li>
+                <li>Autenticación.</li>
+                <li>Permisos de usuario.</li>
+                <li>Validación de datos.</li>
+                <li>Integridad de respuestas JSON.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🐳 Pruebas con Docker</h2>
+
+            <p>
+                El proyecto incluye soporte Docker
+                para realizar pruebas en entornos aislados
+                y reproducibles.
+            </p>
+
+            <p>
+                Esto facilita:
+            </p>
+
+            <ul>
+                <li>Testing en múltiples entornos.</li>
+                <li>Despliegues consistentes.</li>
+                <li>Integración continua.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🚀 Integración Continua</h2>
+
+            <p>
+                El repositorio implementa flujos
+                de integración continua (CI)
+                mediante GitHub Actions.
+            </p>
+
+            <p>
+                Las validaciones automáticas incluyen:
+            </p>
+
+            <ul>
+                <li>Ejecución automática de pruebas.</li>
+                <li>Validación de código.</li>
+                <li>Análisis de calidad.</li>
+                <li>Control de errores antes de merges.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>📊 Resultados Generales</h2>
+
+            <ul>
+                <li>Alta estabilidad del sistema.</li>
+                <li>Correcta integración entre módulos.</li>
+                <li>API funcional y validada.</li>
+                <li>Compatibilidad con Docker.</li>
+                <li>Arquitectura preparada para escalabilidad.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🎯 Objetivo de las Pruebas</h2>
+
+            <p>
+                Las pruebas realizadas en InvenTree
+                tienen como finalidad garantizar
+                la confiabilidad del sistema,
+                detectar errores tempranamente
+                y mantener la calidad del software
+                durante el desarrollo continuo.
+            </p>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
