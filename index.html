@@ -1,232 +1,333 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Landing de presentación de InvenTree para GitHub Pages"
-    />
-    <title>InvenTree | Presentación del Proyecto</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cine Management System</title>
+
     <style>
-      :root {
-        --bg-1: #f7f3ec;
-        --bg-2: #ead8c0;
-        --ink: #1f1d1b;
-        --muted: #5c554d;
-        --accent: #0f7b6c;
-        --accent-2: #e36f2d;
-        --card: #fffdf8;
-        --line: #d6c7b3;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        color: var(--ink);
-        font-family: "Segoe UI", "Trebuchet MS", "Franklin Gothic Medium", sans-serif;
-        background:
-          radial-gradient(circle at 15% 10%, #fff5e6 0%, transparent 45%),
-          radial-gradient(circle at 85% 90%, #f7dcbf 0%, transparent 40%),
-          linear-gradient(160deg, var(--bg-1), var(--bg-2));
-        min-height: 100vh;
-      }
-
-      .wrap {
-        width: min(1100px, 92vw);
-        margin: 0 auto;
-      }
-
-      .hero {
-        min-height: 100vh;
-        display: grid;
-        align-items: center;
-        padding: 2rem 0 4rem;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.6);
-        font-size: 0.9rem;
-        color: var(--muted);
-      }
-
-      h1 {
-        font-size: clamp(2rem, 5vw, 4.5rem);
-        line-height: 1;
-        letter-spacing: -0.03em;
-        margin: 1rem 0;
-        max-width: 16ch;
-      }
-
-      .lead {
-        max-width: 70ch;
-        color: var(--muted);
-        font-size: clamp(1rem, 1.2vw + 0.8rem, 1.3rem);
-        line-height: 1.6;
-      }
-
-      .cta-row {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .btn {
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 12px;
-        padding: 0.8rem 1rem;
-        border: 2px solid transparent;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-      }
-
-      .btn.primary {
-        background: var(--accent);
-        color: #fff;
-        box-shadow: 0 10px 20px rgba(15, 123, 108, 0.25);
-      }
-
-      .btn.secondary {
-        background: transparent;
-        color: var(--ink);
-        border-color: var(--line);
-      }
-
-      .btn:hover {
-        transform: translateY(-2px);
-      }
-
-      .cards {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 1rem;
-      }
-
-      .card h2 {
-        margin-top: 0;
-        font-size: 1.1rem;
-      }
-
-      .card p {
-        margin-bottom: 0;
-        color: var(--muted);
-      }
-
-      .section {
-        margin-bottom: 3rem;
-      }
-
-      .footer {
-        color: var(--muted);
-        font-size: 0.95rem;
-        padding: 2rem 0;
-      }
-
-      @media (max-width: 900px) {
-        .cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        .hero > * {
-          opacity: 0;
-          transform: translateY(14px);
-          animation: reveal 0.7s ease forwards;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .hero > *:nth-child(1) { animation-delay: 0.06s; }
-        .hero > *:nth-child(2) { animation-delay: 0.12s; }
-        .hero > *:nth-child(3) { animation-delay: 0.2s; }
-        .hero > *:nth-child(4) { animation-delay: 0.28s; }
-
-        @keyframes reveal {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        body{
+            background:#0f0f0f;
+            color:white;
+            line-height:1.6;
         }
-      }
+
+        header{
+            width:100%;
+            height:100vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1974&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:20px;
+        }
+
+        .hero{
+            max-width:900px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            margin-bottom:20px;
+            color:#ff3c3c;
+        }
+
+        .hero p{
+            font-size:20px;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:12px 30px;
+            background:#ff3c3c;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        .btn:hover{
+            background:#ff1f1f;
+        }
+
+        section{
+            padding:70px 10%;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .section-title h2{
+            font-size:40px;
+            color:#ff3c3c;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:#1a1a1a;
+            padding:25px;
+            border-radius:10px;
+            transition:0.3s;
+            border:1px solid #2a2a2a;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            border-color:#ff3c3c;
+        }
+
+        .card h3{
+            margin-bottom:15px;
+            color:#ff3c3c;
+        }
+
+        .documentation{
+            background:#151515;
+        }
+
+        .documentation h3{
+            margin-top:30px;
+            margin-bottom:15px;
+            color:#ff3c3c;
+        }
+
+        .documentation ul{
+            margin-left:20px;
+        }
+
+        .documentation li{
+            margin-bottom:10px;
+        }
+
+        footer{
+            background:#090909;
+            text-align:center;
+            padding:25px;
+            border-top:1px solid #222;
+        }
+
+        footer p{
+            color:#aaa;
+        }
+
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:40px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .section-title h2{
+                font-size:32px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <main class="wrap hero">
-      <span class="badge">Presentación para GitHub Pages</span>
+</head>
 
-      <section class="section">
-        <h1>InvenTree: plataforma open source para inventario</h1>
-        <p class="lead">
-          Este repositorio está dedicado a presentar el proyecto
-          <strong>InvenTree</strong>. InvenTree es una solución moderna para la
-          gestión de inventario, partes, stock y procesos relacionados con
-          fabricación.
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="hero">
+
+            <h1>Cine Management System</h1>
+
+            <p>
+                Sistema web de gestión de cine desarrollado para la administración
+                de películas, funciones, reservas y usuarios.
+            </p>
+
+            <a href="#documentacion" class="btn">
+                Ver Documentación
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- ================= FUNCIONALIDADES ================= -->
+
+    <section>
+
+        <div class="section-title">
+            <h2>Funcionalidades</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🎬 Gestión de Películas</h3>
+
+                <p>
+                    Permite registrar, editar y eliminar películas
+                    dentro del sistema.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🕒 Gestión de Funciones</h3>
+
+                <p>
+                    Administración de horarios, fechas y funciones
+                    disponibles en el cine.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎟️ Reserva de Entradas</h3>
+
+                <p>
+                    Los usuarios pueden seleccionar asientos
+                    y realizar reservas de entradas.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>👤 Gestión de Usuarios</h3>
+
+                <p>
+                    Control de acceso mediante autenticación
+                    y administración de clientes.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🏢 Gestión de Salas</h3>
+
+                <p>
+                    Permite organizar las salas de cine
+                    y controlar su disponibilidad.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📊 Panel Administrativo</h3>
+
+                <p>
+                    Visualización y control general
+                    del sistema desde un panel central.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= DOCUMENTACION ================= -->
+
+    <section id="documentacion" class="documentation">
+
+        <div class="section-title">
+            <h2>Documentación del Proyecto</h2>
+        </div>
+
+        <p>
+            Este proyecto consiste en un sistema de gestión de cine
+            desarrollado con tecnologías web. Su finalidad es facilitar
+            la administración de películas, funciones, reservas
+            y usuarios dentro de una plataforma digital.
         </p>
 
-        <div class="cta-row">
-          <a
-            class="btn primary"
-            href="https://github.com/inventree/InvenTree"
-            target="_blank"
-            rel="noreferrer"
-            >Ver repositorio oficial</a
-          >
-          <a
-            class="btn secondary"
-            href="https://inventree.readthedocs.io/"
-            target="_blank"
-            rel="noreferrer"
-            >Ver documentación</a
-          >
-        </div>
-      </section>
+        <h3>🎯 Objetivo del Sistema</h3>
 
-      <section class="cards" aria-label="Resumen de características">
-        <article class="card">
-          <h2>Gestión de partes</h2>
-          <p>
-            Organización de componentes con metadatos, categorías y trazabilidad.
-          </p>
-        </article>
-        <article class="card">
-          <h2>Control de stock</h2>
-          <p>
-            Seguimiento de existencias, ubicaciones y movimientos de inventario.
-          </p>
-        </article>
-        <article class="card">
-          <h2>Flujo de fabricación</h2>
-          <p>
-            Soporte para BOM, órdenes de construcción y procesos de ensamblaje.
-          </p>
-        </article>
-      </section>
-    </main>
+        <p>
+            El sistema busca optimizar la organización y control
+            de un cine mediante herramientas administrativas y
+            funcionalidades para clientes.
+        </p>
 
-    <footer class="wrap footer">
-      Página de presentación creada para GitHub Pages.
+        <h3>⚙️ Funcionalidades Principales</h3>
+
+        <ul>
+            <li>Registro y administración de películas.</li>
+            <li>Gestión de horarios y funciones.</li>
+            <li>Control de salas de cine.</li>
+            <li>Reserva y compra de entradas.</li>
+            <li>Inicio de sesión y autenticación.</li>
+            <li>Panel administrativo.</li>
+            <li>Gestión de usuarios y clientes.</li>
+            <li>Visualización de cartelera.</li>
+        </ul>
+
+        <h3>🛠️ Tecnologías Utilizadas</h3>
+
+        <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+            <li>MySQL</li>
+            <li>Git & GitHub</li>
+        </ul>
+
+        <h3>📌 Flujo General del Sistema</h3>
+
+        <p>
+            El cliente puede ingresar al sistema, visualizar
+            las películas disponibles, seleccionar funciones,
+            escoger asientos y reservar entradas.
+        </p>
+
+        <p>
+            El administrador tiene acceso a módulos
+            de gestión de películas, salas, horarios,
+            usuarios y reportes generales.
+        </p>
+
+        <h3>📂 Estructura General</h3>
+
+        <ul>
+            <li><strong>Frontend:</strong> Interfaces visuales del sistema.</li>
+            <li><strong>Backend:</strong> Procesamiento lógico y administración.</li>
+            <li><strong>Base de Datos:</strong> Almacenamiento de información.</li>
+        </ul>
+
+        <h3>🎓 Finalidad Académica</h3>
+
+        <p>
+            Este proyecto fue desarrollado con fines académicos
+            para aplicar conocimientos en programación web,
+            bases de datos y gestión de sistemas.
+        </p>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Cine Management System | Proyecto Académico
+        </p>
+
     </footer>
-  </body>
+
+</body>
 </html>
