@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Landing de presentación de InvenTree para GitHub Pages"
+    />
+    <title>InvenTree | Presentación del Proyecto</title>
+    <style>
+      :root {
+        --bg-1: #f7f3ec;
+        --bg-2: #ead8c0;
+        --ink: #1f1d1b;
+        --muted: #5c554d;
+        --accent: #0f7b6c;
+        --accent-2: #e36f2d;
+        --card: #fffdf8;
+        --line: #d6c7b3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        color: var(--ink);
+        font-family: "Segoe UI", "Trebuchet MS", "Franklin Gothic Medium", sans-serif;
+        background:
+          radial-gradient(circle at 15% 10%, #fff5e6 0%, transparent 45%),
+          radial-gradient(circle at 85% 90%, #f7dcbf 0%, transparent 40%),
+          linear-gradient(160deg, var(--bg-1), var(--bg-2));
+        min-height: 100vh;
+      }
+
+      .wrap {
+        width: min(1100px, 92vw);
+        margin: 0 auto;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        padding: 2rem 0 4rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin: 1rem 0;
+        max-width: 16ch;
+      }
+
+      .lead {
+        max-width: 70ch;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.2vw + 0.8rem, 1.3rem);
+        line-height: 1.6;
+      }
+
+      .cta-row {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .btn {
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        border: 2px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 10px 20px rgba(15, 123, 108, 0.25);
+      }
+
+      .btn.secondary {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--line);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .cards {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 1rem;
+      }
+
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+
+      .card p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .section {
+        margin-bottom: 3rem;
+      }
+
+      .footer {
+        color: var(--muted);
+        font-size: 0.95rem;
+        padding: 2rem 0;
+      }
+
+      @media (max-width: 900px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero > * {
+          opacity: 0;
+          transform: translateY(14px);
+          animation: reveal 0.7s ease forwards;
+        }
+
+        .hero > *:nth-child(1) { animation-delay: 0.06s; }
+        .hero > *:nth-child(2) { animation-delay: 0.12s; }
+        .hero > *:nth-child(3) { animation-delay: 0.2s; }
+        .hero > *:nth-child(4) { animation-delay: 0.28s; }
+
+        @keyframes reveal {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap hero">
+      <span class="badge">Presentación para GitHub Pages</span>
+
+      <section class="section">
+        <h1>InvenTree: plataforma open source para inventario</h1>
+        <p class="lead">
+          Este repositorio está dedicado a presentar el proyecto
+          <strong>InvenTree</strong>. InvenTree es una solución moderna para la
+          gestión de inventario, partes, stock y procesos relacionados con
+          fabricación.
+        </p>
+
+        <div class="cta-row">
+          <a
+            class="btn primary"
+            href="https://github.com/inventree/InvenTree"
+            target="_blank"
+            rel="noreferrer"
+            >Ver repositorio oficial</a
+          >
+          <a
+            class="btn secondary"
+            href="https://inventree.readthedocs.io/"
+            target="_blank"
+            rel="noreferrer"
+            >Ver documentación</a
+          >
+        </div>
+      </section>
+
+      <section class="cards" aria-label="Resumen de características">
+        <article class="card">
+          <h2>Gestión de partes</h2>
+          <p>
+            Organización de componentes con metadatos, categorías y trazabilidad.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Control de stock</h2>
+          <p>
+            Seguimiento de existencias, ubicaciones y movimientos de inventario.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Flujo de fabricación</h2>
+          <p>
+            Soporte para BOM, órdenes de construcción y procesos de ensamblaje.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="wrap footer">
+      Página de presentación creada para GitHub Pages.
+    </footer>
+  </body>
+</html>
