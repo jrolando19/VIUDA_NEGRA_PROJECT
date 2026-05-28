@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cine Management System</title>
+    <title>InvenTree - Sistema de Gestión de Inventario</title>
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -15,7 +16,7 @@
         }
 
         body{
-            background:#0f0f0f;
+            background:#0f172a;
             color:white;
             line-height:1.6;
         }
@@ -24,8 +25,8 @@
             width:100%;
             height:100vh;
             background:
-                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1974&auto=format&fit=crop');
+                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop');
             background-size:cover;
             background-position:center;
             display:flex;
@@ -40,29 +41,31 @@
         }
 
         .hero h1{
-            font-size:60px;
+            font-size:65px;
             margin-bottom:20px;
-            color:#ff3c3c;
+            color:#38bdf8;
         }
 
         .hero p{
-            font-size:20px;
+            font-size:22px;
             margin-bottom:30px;
+            color:#e2e8f0;
         }
 
         .btn{
             display:inline-block;
-            padding:12px 30px;
-            background:#ff3c3c;
-            color:white;
+            padding:14px 35px;
+            background:#38bdf8;
+            color:#0f172a;
             text-decoration:none;
-            border-radius:5px;
-            transition:0.3s;
+            border-radius:8px;
             font-weight:bold;
+            transition:0.3s;
         }
 
         .btn:hover{
-            background:#ff1f1f;
+            background:#0ea5e9;
+            transform:scale(1.05);
         }
 
         section{
@@ -71,46 +74,46 @@
 
         .section-title{
             text-align:center;
-            margin-bottom:40px;
+            margin-bottom:50px;
         }
 
         .section-title h2{
-            font-size:40px;
-            color:#ff3c3c;
+            font-size:42px;
+            color:#38bdf8;
         }
 
         .cards{
             display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+            grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
             gap:25px;
         }
 
         .card{
-            background:#1a1a1a;
+            background:#1e293b;
             padding:25px;
-            border-radius:10px;
+            border-radius:15px;
             transition:0.3s;
-            border:1px solid #2a2a2a;
+            border:1px solid #334155;
         }
 
         .card:hover{
-            transform:translateY(-5px);
-            border-color:#ff3c3c;
+            transform:translateY(-8px);
+            border-color:#38bdf8;
         }
 
         .card h3{
             margin-bottom:15px;
-            color:#ff3c3c;
+            color:#38bdf8;
         }
 
         .documentation{
-            background:#151515;
+            background:#111827;
         }
 
         .documentation h3{
-            margin-top:30px;
+            color:#38bdf8;
+            margin-top:35px;
             margin-bottom:15px;
-            color:#ff3c3c;
         }
 
         .documentation ul{
@@ -121,21 +124,26 @@
             margin-bottom:10px;
         }
 
+        .highlight{
+            color:#38bdf8;
+            font-weight:bold;
+        }
+
         footer{
-            background:#090909;
+            background:#020617;
             text-align:center;
             padding:25px;
-            border-top:1px solid #222;
+            border-top:1px solid #1e293b;
         }
 
         footer p{
-            color:#aaa;
+            color:#94a3b8;
         }
 
         @media(max-width:768px){
 
             .hero h1{
-                font-size:40px;
+                font-size:42px;
             }
 
             .hero p{
@@ -145,8 +153,11 @@
             .section-title h2{
                 font-size:32px;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -157,11 +168,11 @@
 
         <div class="hero">
 
-            <h1>Cine Management System</h1>
+            <h1>InvenTree</h1>
 
             <p>
-                Sistema web de gestión de cine desarrollado para la administración
-                de películas, funciones, reservas y usuarios.
+                Sistema Open Source de gestión de inventario y control de stock
+                desarrollado con Python y Django.
             </p>
 
             <a href="#documentacion" class="btn">
@@ -177,62 +188,62 @@
     <section>
 
         <div class="section-title">
-            <h2>Funcionalidades</h2>
+            <h2>Funcionalidades Principales</h2>
         </div>
 
         <div class="cards">
 
             <div class="card">
-                <h3>🎬 Gestión de Películas</h3>
+                <h3>📦 Gestión de Inventario</h3>
 
                 <p>
-                    Permite registrar, editar y eliminar películas
-                    dentro del sistema.
+                    Permite administrar productos, piezas y materiales
+                    organizados por categorías.
                 </p>
             </div>
 
             <div class="card">
-                <h3>🕒 Gestión de Funciones</h3>
+                <h3>🏭 Control de Producción</h3>
 
                 <p>
-                    Administración de horarios, fechas y funciones
-                    disponibles en el cine.
+                    Gestión de ensamblajes, listas BOM
+                    y procesos de fabricación.
                 </p>
             </div>
 
             <div class="card">
-                <h3>🎟️ Reserva de Entradas</h3>
+                <h3>📊 Control de Stock</h3>
 
                 <p>
-                    Los usuarios pueden seleccionar asientos
-                    y realizar reservas de entradas.
+                    Visualización inmediata de stock disponible,
+                    movimientos y trazabilidad.
                 </p>
             </div>
 
             <div class="card">
-                <h3>👤 Gestión de Usuarios</h3>
+                <h3>🚚 Gestión de Proveedores</h3>
 
                 <p>
-                    Control de acceso mediante autenticación
-                    y administración de clientes.
+                    Administración de proveedores,
+                    órdenes de compra y componentes.
                 </p>
             </div>
 
             <div class="card">
-                <h3>🏢 Gestión de Salas</h3>
+                <h3>🔌 API REST</h3>
 
                 <p>
-                    Permite organizar las salas de cine
-                    y controlar su disponibilidad.
+                    Integración con aplicaciones externas
+                    mediante una API robusta.
                 </p>
             </div>
 
             <div class="card">
-                <h3>📊 Panel Administrativo</h3>
+                <h3>🧩 Sistema de Plugins</h3>
 
                 <p>
-                    Visualización y control general
-                    del sistema desde un panel central.
+                    Extensión del sistema mediante plugins
+                    personalizados y automatizaciones.
                 </p>
             </div>
 
@@ -249,72 +260,124 @@
         </div>
 
         <p>
-            Este proyecto consiste en un sistema de gestión de cine
-            desarrollado con tecnologías web. Su finalidad es facilitar
-            la administración de películas, funciones, reservas
-            y usuarios dentro de una plataforma digital.
+            <span class="highlight">InvenTree</span> es un sistema open source de gestión de inventario
+            diseñado para el control de stock, seguimiento de piezas y administración
+            de procesos relacionados con manufactura e inventario.
+        </p>
+
+        <br>
+
+        <p>
+            El proyecto está desarrollado principalmente utilizando
+            <span class="highlight">Python</span>,
+            <span class="highlight">Django</span> y
+            <span class="highlight">TypeScript</span>,
+            ofreciendo una plataforma moderna, flexible y extensible. 0
         </p>
 
         <h3>🎯 Objetivo del Sistema</h3>
 
         <p>
-            El sistema busca optimizar la organización y control
-            de un cine mediante herramientas administrativas y
-            funcionalidades para clientes.
+            El objetivo principal del sistema es facilitar la administración
+            de inventarios mediante herramientas digitales que permitan:
         </p>
 
-        <h3>⚙️ Funcionalidades Principales</h3>
+        <ul>
+            <li>Organizar piezas y componentes.</li>
+            <li>Controlar entradas y salidas de stock.</li>
+            <li>Gestionar proveedores.</li>
+            <li>Supervisar procesos de fabricación.</li>
+            <li>Integrar sistemas externos mediante API.</li>
+        </ul>
+
+        <h3>⚙️ Funcionalidades del Sistema</h3>
 
         <ul>
-            <li>Registro y administración de películas.</li>
-            <li>Gestión de horarios y funciones.</li>
-            <li>Control de salas de cine.</li>
-            <li>Reserva y compra de entradas.</li>
-            <li>Inicio de sesión y autenticación.</li>
-            <li>Panel administrativo.</li>
-            <li>Gestión de usuarios y clientes.</li>
-            <li>Visualización de cartelera.</li>
+            <li>Gestión avanzada de inventario.</li>
+            <li>Seguimiento de stock en tiempo real.</li>
+            <li>Administración de partes y categorías.</li>
+            <li>Control de listas BOM (Bill of Materials).</li>
+            <li>Gestión de proveedores y órdenes.</li>
+            <li>Generación de reportes.</li>
+            <li>Integración mediante API REST.</li>
+            <li>Sistema de autenticación y permisos.</li>
+            <li>Plugins y extensiones personalizadas.</li>
         </ul>
 
         <h3>🛠️ Tecnologías Utilizadas</h3>
 
         <ul>
+            <li>Python</li>
+            <li>Django</li>
+            <li>TypeScript</li>
             <li>HTML5</li>
             <li>CSS3</li>
-            <li>JavaScript</li>
-            <li>PHP</li>
-            <li>MySQL</li>
-            <li>Git & GitHub</li>
+            <li>Docker</li>
+            <li>REST API</li>
+            <li>PostgreSQL / SQLite</li>
         </ul>
 
-        <h3>📌 Flujo General del Sistema</h3>
+        <h3>📌 Arquitectura del Proyecto</h3>
 
         <p>
-            El cliente puede ingresar al sistema, visualizar
-            las películas disponibles, seleccionar funciones,
-            escoger asientos y reservar entradas.
+            InvenTree utiliza una arquitectura basada en:
         </p>
-
-        <p>
-            El administrador tiene acceso a módulos
-            de gestión de películas, salas, horarios,
-            usuarios y reportes generales.
-        </p>
-
-        <h3>📂 Estructura General</h3>
 
         <ul>
-            <li><strong>Frontend:</strong> Interfaces visuales del sistema.</li>
-            <li><strong>Backend:</strong> Procesamiento lógico y administración.</li>
-            <li><strong>Base de Datos:</strong> Almacenamiento de información.</li>
+            <li><strong>Frontend:</strong> Interfaz web moderna.</li>
+            <li><strong>Backend:</strong> Django y Python.</li>
+            <li><strong>Base de Datos:</strong> Sistema relacional.</li>
+            <li><strong>API:</strong> Comunicación externa mediante REST.</li>
         </ul>
 
-        <h3>🎓 Finalidad Académica</h3>
+        <h3>🔍 ¿Qué hace el sistema?</h3>
 
         <p>
-            Este proyecto fue desarrollado con fines académicos
-            para aplicar conocimientos en programación web,
-            bases de datos y gestión de sistemas.
+            El sistema permite registrar productos y piezas,
+            monitorear el inventario disponible, gestionar procesos
+            de ensamblaje y mantener un historial completo de movimientos.
+        </p>
+
+        <p>
+            También facilita la integración con otras plataformas,
+            automatizaciones y herramientas empresariales gracias
+            a su arquitectura extensible y API integrada. 1
+        </p>
+
+        <h3>🌐 Características Open Source</h3>
+
+        <p>
+            InvenTree es un proyecto open source bajo licencia MIT,
+            permitiendo que desarrolladores y empresas puedan modificar,
+            extender y adaptar el sistema según sus necesidades. 2
+        </p>
+
+        <h3>📚 Recursos Oficiales</h3>
+
+        <ul>
+            <li>
+                Repositorio GitHub:
+                [github.com](https://reference-url-citation.invalid/3)
+            </li>
+
+            <li>
+                Página Oficial:
+                [inventree.org](https://reference-url-citation.invalid/4)
+            </li>
+
+            <li>
+                Documentación:
+                [docs.inventree.org](https://reference-url-citation.invalid/5)
+            </li>
+        </ul>
+
+        <h3>🎓 Finalidad del Proyecto</h3>
+
+        <p>
+            Este proyecto es ampliamente utilizado en entornos
+            de manufactura, laboratorios, empresas tecnológicas
+            y proyectos electrónicos para mejorar el control
+            y organización del inventario. 6
         </p>
 
     </section>
@@ -324,10 +387,11 @@
     <footer>
 
         <p>
-            © 2026 Cine Management System | Proyecto Académico
+            © 2026 - Documentación basada en el proyecto InvenTree
         </p>
 
     </footer>
 
 </body>
 </html>
+```7
