@@ -31,13 +31,18 @@
 
         header h1{
             color:#ff0000;
-            font-size:50px;
+            font-size:52px;
             margin-bottom:15px;
+        }
+
+        header p{
+            color:#d1d1d1;
+            font-size:18px;
         }
 
         .container{
             width:90%;
-            max-width:1200px;
+            max-width:1300px;
             margin:auto;
             padding:50px 0;
         }
@@ -53,6 +58,13 @@
         h2{
             color:#ff0000;
             margin-bottom:20px;
+            font-size:32px;
+        }
+
+        h3{
+            color:#ff4d4d;
+            margin-top:25px;
+            margin-bottom:15px;
         }
 
         p, li{
@@ -60,7 +72,16 @@
         }
 
         ul{
-            margin-left:20px;
+            margin-left:25px;
+        }
+
+        li{
+            margin-bottom:10px;
+        }
+
+        .highlight{
+            color:#ff4d4d;
+            font-weight:bold;
         }
 
         .btn{
@@ -71,6 +92,41 @@
             color:white;
             text-decoration:none;
             border-radius:8px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#cc0000;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+            gap:20px;
+            margin-top:25px;
+        }
+
+        .card{
+            background:#1b1b1b;
+            padding:25px;
+            border-radius:12px;
+            border:1px solid #2a2a2a;
+        }
+
+        .card h3{
+            margin-top:0;
+        }
+
+        @media(max-width:768px){
+
+            header h1{
+                font-size:38px;
+            }
+
+            h2{
+                font-size:28px;
+            }
+
         }
 
     </style>
@@ -79,57 +135,302 @@
 
 <body>
 
+    <!-- ================= HEADER ================= -->
+
     <header>
 
-        <h1>📘 Documentación</h1>
+        <h1>📘 Documentación InvenTree</h1>
 
-        <p>Documentación técnica y general del repositorio InvenTree.</p>
+        <p>
+            Documentación funcional y técnica basada en el repositorio oficial InvenTree.
+        </p>
 
         <a href="index.html" class="btn">
-            ⬅ Volver
+            ⬅ Volver al Inicio
         </a>
 
     </header>
+
+    <!-- ================= CONTENIDO ================= -->
 
     <div class="container">
 
         <section>
 
-            <h2>Descripción General</h2>
+            <h2>📌 Descripción General</h2>
 
             <p>
-                InvenTree es un sistema Open Source orientado
-                a la gestión de inventario, control de stock
-                y administración de componentes empresariales.
+                <span class="highlight">InvenTree</span> es una plataforma Open Source
+                orientada a la gestión de inventario, control de stock,
+                administración de componentes y procesos de manufactura.
+            </p>
+
+            <p>
+                El sistema está diseñado para empresas,
+                laboratorios, talleres y proyectos tecnológicos
+                que necesitan administrar piezas,
+                productos, órdenes y movimientos de inventario
+                de manera eficiente.
+            </p>
+
+            <p>
+                El proyecto utiliza tecnologías modernas
+                como Python, Django, PostgreSQL,
+                Docker y una API REST integrada.
             </p>
 
         </section>
 
         <section>
 
-            <h2>Funcionalidades</h2>
+            <h2>🎯 Objetivo del Sistema</h2>
+
+            <p>
+                El objetivo principal de InvenTree
+                es proporcionar una solución centralizada
+                para administrar inventarios complejos,
+                automatizar procesos y mejorar
+                la trazabilidad de componentes.
+            </p>
 
             <ul>
-                <li>Gestión de inventario.</li>
-                <li>Control de stock.</li>
-                <li>Gestión de proveedores.</li>
-                <li>API REST.</li>
-                <li>Sistema de usuarios.</li>
-                <li>Plugins y extensiones.</li>
+                <li>Controlar inventario en tiempo real.</li>
+                <li>Gestionar órdenes de compra.</li>
+                <li>Administrar proveedores.</li>
+                <li>Supervisar procesos de ensamblaje.</li>
+                <li>Automatizar flujos mediante API y plugins.</li>
+                <li>Optimizar la organización empresarial.</li>
             </ul>
 
         </section>
 
         <section>
 
-            <h2>Tecnologías Utilizadas</h2>
+            <h2>⚙️ Funcionalidades Principales</h2>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>📦 Gestión de Inventario</h3>
+
+                    <p>
+                        Permite registrar productos,
+                        componentes y piezas organizadas
+                        mediante categorías y subcategorías.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>📊 Control de Stock</h3>
+
+                    <p>
+                        Supervisa cantidades disponibles,
+                        movimientos de inventario,
+                        historial y trazabilidad completa.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🏭 Gestión de Producción</h3>
+
+                    <p>
+                        Soporta listas BOM
+                        (Bill Of Materials)
+                        y procesos de ensamblaje.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🧾 Órdenes de Compra</h3>
+
+                    <p>
+                        Administración de compras,
+                        recepción de materiales
+                        y control de pedidos.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🚚 Gestión de Proveedores</h3>
+
+                    <p>
+                        Registro y administración
+                        de proveedores, fabricantes
+                        y distribuidores.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🔌 API REST</h3>
+
+                    <p>
+                        Integración con sistemas externos
+                        mediante endpoints REST seguros.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>👥 Gestión de Usuarios</h3>
+
+                    <p>
+                        Sistema de autenticación,
+                        roles y permisos
+                        para distintos usuarios.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🧩 Plugins y Extensiones</h3>
+
+                    <p>
+                        Soporte para plugins personalizados
+                        y automatización de procesos.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2>🏗️ Arquitectura del Sistema</h2>
+
+            <h3>Frontend</h3>
+
+            <p>
+                Interfaz web moderna utilizada
+                para administrar inventario,
+                órdenes y componentes.
+            </p>
+
+            <h3>Backend</h3>
+
+            <p>
+                Desarrollado con Python y Django,
+                encargado de la lógica empresarial,
+                autenticación y procesamiento de datos.
+            </p>
+
+            <h3>Base de Datos</h3>
+
+            <p>
+                Compatible principalmente con PostgreSQL,
+                aunque también puede funcionar con SQLite
+                para entornos de desarrollo.
+            </p>
+
+            <h3>Docker</h3>
+
+            <p>
+                Incluye soporte completo para despliegue
+                mediante contenedores Docker.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>🛠️ Tecnologías Utilizadas</h2>
 
             <ul>
                 <li>Python</li>
                 <li>Django</li>
                 <li>TypeScript</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
                 <li>Docker</li>
                 <li>PostgreSQL</li>
+                <li>REST API</li>
+                <li>GitHub Actions</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🔒 Seguridad y Permisos</h2>
+
+            <p>
+                InvenTree implementa un sistema
+                de autenticación y control de acceso
+                basado en usuarios y permisos.
+            </p>
+
+            <ul>
+                <li>Roles administrativos.</li>
+                <li>Permisos personalizados.</li>
+                <li>Control de acceso a módulos.</li>
+                <li>Autenticación segura.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🌐 API REST</h2>
+
+            <p>
+                El sistema incluye una API REST
+                que permite integración
+                con herramientas externas,
+                automatizaciones y sistemas empresariales.
+            </p>
+
+            <p>
+                La API facilita:
+            </p>
+
+            <ul>
+                <li>Consulta de inventario.</li>
+                <li>Registro de movimientos.</li>
+                <li>Automatización de procesos.</li>
+                <li>Integración con ERP externos.</li>
+                <li>Sincronización de datos.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>📈 Beneficios del Sistema</h2>
+
+            <ul>
+                <li>Centralización de inventario.</li>
+                <li>Mejor organización empresarial.</li>
+                <li>Reducción de errores manuales.</li>
+                <li>Trazabilidad completa.</li>
+                <li>Escalabilidad empresarial.</li>
+                <li>Automatización de procesos.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>📚 Recursos Oficiales</h2>
+
+            <ul>
+                <li>Repositorio oficial en GitHub.</li>
+                <li>Documentación oficial.</li>
+                <li>Comunidad Open Source activa.</li>
+                <li>Soporte mediante Issues y Pull Requests.</li>
             </ul>
 
         </section>
