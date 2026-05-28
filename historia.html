@@ -31,13 +31,18 @@
 
         header h1{
             color:#ff0000;
-            font-size:50px;
+            font-size:52px;
             margin-bottom:15px;
+        }
+
+        header p{
+            color:#d1d1d1;
+            font-size:18px;
         }
 
         .container{
             width:90%;
-            max-width:1200px;
+            max-width:1300px;
             margin:auto;
             padding:50px 0;
         }
@@ -53,10 +58,50 @@
         h2{
             color:#ff0000;
             margin-bottom:20px;
+            font-size:32px;
         }
 
-        p{
+        h3{
+            color:#ff4d4d;
+            margin-top:25px;
+            margin-bottom:15px;
+        }
+
+        p, li{
             color:#d1d1d1;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        li{
+            margin-bottom:10px;
+        }
+
+        .highlight{
+            color:#ff4d4d;
+            font-weight:bold;
+        }
+
+        .timeline{
+            border-left:3px solid #ff0000;
+            padding-left:25px;
+            margin-top:20px;
+        }
+
+        .timeline-item{
+            margin-bottom:35px;
+        }
+
+        .timeline-item h3{
+            margin-top:0;
+        }
+
+        .date{
+            color:#ff4d4d;
+            font-weight:bold;
+            margin-bottom:10px;
         }
 
         .btn{
@@ -67,6 +112,23 @@
             color:white;
             text-decoration:none;
             border-radius:8px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#cc0000;
+        }
+
+        @media(max-width:768px){
+
+            header h1{
+                font-size:38px;
+            }
+
+            h2{
+                font-size:28px;
+            }
+
         }
 
     </style>
@@ -75,64 +137,289 @@
 
 <body>
 
+    <!-- ================= HEADER ================= -->
+
     <header>
 
-        <h1>📜 Historia</h1>
+        <h1>📜 Historia del Proyecto</h1>
 
-        <p>Historia y evolución del proyecto InvenTree.</p>
+        <p>
+            Evolución histórica y crecimiento del repositorio Open Source InvenTree.
+        </p>
 
         <a href="index.html" class="btn">
-            ⬅ Volver
+            ⬅ Volver al Inicio
         </a>
 
     </header>
+
+    <!-- ================= CONTENIDO ================= -->
 
     <div class="container">
 
         <section>
 
-            <h2>Origen del Proyecto</h2>
+            <h2>📌 Introducción</h2>
 
             <p>
-                InvenTree nació como una solución Open Source
-                orientada a la gestión de inventario
-                y control de componentes empresariales.
+                <span class="highlight">InvenTree</span>
+                es una plataforma Open Source
+                orientada a la gestión de inventario,
+                control de stock y administración
+                de procesos de manufactura.
+            </p>
+
+            <p>
+                El proyecto fue desarrollado
+                con el objetivo de proporcionar
+                una solución moderna y flexible
+                para empresas, talleres,
+                laboratorios y organizaciones
+                que requieren control detallado
+                de componentes y productos.
             </p>
 
         </section>
 
         <section>
 
-            <h2>Evolución</h2>
+            <h2>🕒 Línea de Tiempo del Proyecto</h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2019 - Inicio del Proyecto
+                    </div>
+
+                    <p>
+                        InvenTree comenzó como un proyecto Open Source
+                        enfocado en resolver problemas relacionados
+                        con la gestión de inventario y seguimiento
+                        de componentes electrónicos y empresariales.
+                    </p>
+
+                    <p>
+                        Durante esta etapa inicial
+                        se desarrollaron las primeras funcionalidades
+                        relacionadas con inventario,
+                        piezas y almacenamiento.
+                    </p>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2020 - Crecimiento del Sistema
+                    </div>
+
+                    <p>
+                        El proyecto empezó a incorporar
+                        nuevas funcionalidades avanzadas,
+                        incluyendo:
+                    </p>
+
+                    <ul>
+                        <li>Gestión de proveedores.</li>
+                        <li>Órdenes de compra.</li>
+                        <li>Control de stock.</li>
+                        <li>API REST.</li>
+                        <li>Roles y permisos.</li>
+                    </ul>
+
+                    <p>
+                        También comenzó a crecer
+                        la comunidad Open Source
+                        que colaboraba mediante GitHub.
+                    </p>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2021 - Integración y Automatización
+                    </div>
+
+                    <p>
+                        Durante este periodo
+                        se implementaron mejoras importantes
+                        relacionadas con automatización,
+                        testing y despliegues.
+                    </p>
+
+                    <ul>
+                        <li>Soporte Docker.</li>
+                        <li>Integración continua.</li>
+                        <li>Pruebas automatizadas.</li>
+                        <li>Mejoras en la API REST.</li>
+                        <li>Sistema de plugins.</li>
+                    </ul>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2022 - Expansión Empresarial
+                    </div>
+
+                    <p>
+                        InvenTree comenzó a ser utilizado
+                        en proyectos empresariales,
+                        laboratorios y entornos industriales.
+                    </p>
+
+                    <p>
+                        El sistema mejoró su estabilidad
+                        y compatibilidad con diferentes entornos.
+                    </p>
+
+                    <ul>
+                        <li>Optimización de rendimiento.</li>
+                        <li>Escalabilidad empresarial.</li>
+                        <li>Mayor seguridad.</li>
+                        <li>Compatibilidad multiplataforma.</li>
+                    </ul>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2023 - Mejoras Modernas</div>
+
+                    <p>
+                        Se realizaron mejoras importantes
+                        en la interfaz,
+                        experiencia de usuario
+                        y arquitectura interna.
+                    </p>
+
+                    <ul>
+                        <li>Actualización del frontend.</li>
+                        <li>Mejoras visuales.</li>
+                        <li>Optimización de consultas.</li>
+                        <li>Mayor estabilidad API.</li>
+                    </ul>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="date">
+                        📅 2024 - Desarrollo Continuo
+                    </div>
+
+                    <p>
+                        El proyecto continúa evolucionando
+                        mediante contribuciones de la comunidad,
+                        correcciones de errores
+                        y nuevas funcionalidades.
+                    </p>
+
+                    <p>
+                        Actualmente InvenTree
+                        es considerado uno de los sistemas Open Source
+                        más completos para gestión de inventario.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2>🌐 Comunidad Open Source</h2>
 
             <p>
-                Con el tiempo, el proyecto fue creciendo
-                gracias a la comunidad y nuevas funcionalidades
-                incorporadas por desarrolladores.
+                InvenTree cuenta con una comunidad activa
+                de desarrolladores y colaboradores
+                que participan mediante:
+            </p>
+
+            <ul>
+                <li>Pull Requests.</li>
+                <li>Reporte de errores.</li>
+                <li>Desarrollo de plugins.</li>
+                <li>Mejoras de documentación.</li>
+                <li>Pruebas del sistema.</li>
+            </ul>
+
+            <p>
+                GitHub se convirtió en el principal medio
+                para coordinar el crecimiento del proyecto.
             </p>
 
         </section>
 
         <section>
 
-            <h2>Comunidad Open Source</h2>
+            <h2>🏗️ Evolución Técnica</h2>
 
             <p>
-                Actualmente InvenTree cuenta con una comunidad activa
-                que contribuye con mejoras, reportes
-                y nuevas características.
+                A lo largo del tiempo,
+                el sistema evolucionó desde
+                una herramienta básica de inventario
+                hasta una plataforma empresarial completa.
             </p>
+
+            <p>
+                Algunas mejoras importantes incluyen:
+            </p>
+
+            <ul>
+                <li>Integración API REST.</li>
+                <li>Arquitectura modular.</li>
+                <li>Testing automatizado.</li>
+                <li>Integración continua.</li>
+                <li>Compatibilidad Docker.</li>
+                <li>Sistema extensible mediante plugins.</li>
+            </ul>
 
         </section>
 
         <section>
 
-            <h2>Estado Actual</h2>
+            <h2>🎯 Impacto del Proyecto</h2>
 
             <p>
-                El proyecto continúa evolucionando
-                como una plataforma moderna
-                para gestión empresarial e inventario.
+                InvenTree ha sido utilizado
+                en múltiples entornos empresariales,
+                educativos y tecnológicos,
+                especialmente en:
+            </p>
+
+            <ul>
+                <li>Empresas de manufactura.</li>
+                <li>Laboratorios electrónicos.</li>
+                <li>Gestión de componentes.</li>
+                <li>Control de inventario industrial.</li>
+                <li>Proyectos tecnológicos Open Source.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>📈 Estado Actual</h2>
+
+            <p>
+                Actualmente el proyecto
+                continúa en desarrollo activo
+                mediante actualizaciones constantes,
+                mejoras de seguridad
+                y optimización del rendimiento.
+            </p>
+
+            <p>
+                La plataforma sigue expandiéndose
+                gracias a la colaboración
+                de la comunidad Open Source.
             </p>
 
         </section>
