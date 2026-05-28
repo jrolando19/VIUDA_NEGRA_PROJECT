@@ -31,17 +31,18 @@
 
         header h1{
             color:#ff0000;
-            font-size:50px;
+            font-size:52px;
             margin-bottom:15px;
         }
 
         header p{
             color:#d1d1d1;
+            font-size:18px;
         }
 
         .container{
             width:90%;
-            max-width:1200px;
+            max-width:1300px;
             margin:auto;
             padding:50px 0;
         }
@@ -57,6 +58,13 @@
         h2{
             color:#ff0000;
             margin-bottom:20px;
+            font-size:32px;
+        }
+
+        h3{
+            color:#ff4d4d;
+            margin-top:25px;
+            margin-bottom:15px;
         }
 
         p, li{
@@ -64,7 +72,16 @@
         }
 
         ul{
-            margin-left:20px;
+            margin-left:25px;
+        }
+
+        li{
+            margin-bottom:10px;
+        }
+
+        .highlight{
+            color:#ff4d4d;
+            font-weight:bold;
         }
 
         .btn{
@@ -82,9 +99,34 @@
             background:#cc0000;
         }
 
-        .highlight{
-            color:#ff4d4d;
-            font-weight:bold;
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+            gap:20px;
+            margin-top:20px;
+        }
+
+        .card{
+            background:#1c1c1c;
+            padding:25px;
+            border-radius:12px;
+            border:1px solid #2b2b2b;
+        }
+
+        .card h3{
+            margin-top:0;
+        }
+
+        @media(max-width:768px){
+
+            header h1{
+                font-size:38px;
+            }
+
+            h2{
+                font-size:28px;
+            }
+
         }
 
     </style>
@@ -97,10 +139,11 @@
 
     <header>
 
-        <h1>🧪 Pruebas del Proyecto</h1>
+        <h1>🧪 Pruebas del Proyecto InvenTree</h1>
 
         <p>
-            Pruebas y validaciones documentadas en el repositorio InvenTree.
+            Análisis de pruebas y validaciones implementadas
+            en el repositorio oficial InvenTree.
         </p>
 
         <a href="index.html" class="btn">
@@ -115,43 +158,118 @@
 
         <section>
 
-            <h2>📌 Sistema de Testing en InvenTree</h2>
+            <h2>📌 Sistema de Testing de InvenTree</h2>
 
             <p>
-                El proyecto Open Source <span class="highlight">InvenTree</span>
-                implementa múltiples mecanismos de pruebas automáticas
-                para garantizar la estabilidad, seguridad
-                y correcto funcionamiento del sistema.
+                El repositorio Open Source
+                <span class="highlight">InvenTree</span>
+                implementa múltiples mecanismos de testing
+                para garantizar estabilidad,
+                seguridad y correcto funcionamiento.
             </p>
 
             <p>
-                Estas pruebas permiten detectar errores,
-                validar módulos internos y asegurar
-                la compatibilidad entre componentes.
+                El proyecto cuenta con pruebas automáticas,
+                validaciones internas e integración continua,
+                permitiendo detectar errores tempranamente
+                durante el desarrollo.
             </p>
 
         </section>
 
         <section>
 
-            <h2>⚙️ Pruebas Unitarias</h2>
+            <h2>⚙️ Frameworks y Herramientas de Testing</h2>
 
-            <p>
-                InvenTree utiliza pruebas unitarias
-                desarrolladas principalmente con:
-            </p>
+            <div class="cards">
 
-            <ul>
-                <li>Python unittest</li>
-                <li>Django Test Framework</li>
-                <li>Pytest</li>
-            </ul>
+                <div class="card">
+
+                    <h3>🐍 Pytest</h3>
+
+                    <p>
+                        Utilizado para ejecutar pruebas automáticas
+                        del backend y validar componentes internos.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🌐 Django Test Framework</h3>
+
+                    <p>
+                        Implementado para probar modelos,
+                        vistas, autenticación y lógica del sistema.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🚀 GitHub Actions</h3>
+
+                    <p>
+                        Utilizado para integración continua
+                        y ejecución automática de pruebas
+                        en cada actualización del repositorio.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🐳 Docker</h3>
+
+                    <p>
+                        Empleado para pruebas en entornos aislados
+                        y despliegues reproducibles.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2>🧪 Pruebas Unitarias</h2>
 
             <p>
                 Las pruebas unitarias verifican
-                el comportamiento individual
-                de funciones, modelos y módulos del sistema.
+                el funcionamiento individual
+                de componentes internos del sistema.
             </p>
+
+            <h3>📦 Modelos y Base de Datos</h3>
+
+            <ul>
+                <li>Validación de creación de modelos.</li>
+                <li>Verificación de relaciones entre tablas.</li>
+                <li>Pruebas de integridad de datos.</li>
+                <li>Validación de campos obligatorios.</li>
+                <li>Control de errores en registros.</li>
+            </ul>
+
+            <h3>🔐 Sistema de Usuarios</h3>
+
+            <ul>
+                <li>Autenticación de usuarios.</li>
+                <li>Validación de permisos.</li>
+                <li>Control de roles administrativos.</li>
+                <li>Restricción de acceso a módulos.</li>
+            </ul>
+
+            <h3>📊 Inventario</h3>
+
+            <ul>
+                <li>Registro de productos.</li>
+                <li>Actualización de stock.</li>
+                <li>Movimientos de inventario.</li>
+                <li>Cálculo de disponibilidad.</li>
+                <li>Validación de ubicaciones.</li>
+            </ul>
 
         </section>
 
@@ -160,62 +278,74 @@
             <h2>🔗 Pruebas de Integración</h2>
 
             <p>
-                El proyecto también implementa pruebas
-                de integración para validar
-                la comunicación entre:
+                Las pruebas de integración verifican
+                la correcta interacción entre módulos internos.
             </p>
 
+            <h3>🌐 API REST</h3>
+
             <ul>
-                <li>Backend y Base de Datos.</li>
-                <li>API REST y servicios internos.</li>
-                <li>Módulos de inventario.</li>
-                <li>Gestión de órdenes y proveedores.</li>
-                <li>Sistema de autenticación.</li>
+                <li>Validación de endpoints.</li>
+                <li>Pruebas de respuestas JSON.</li>
+                <li>Verificación de códigos HTTP.</li>
+                <li>Control de autenticación API.</li>
+                <li>Pruebas de permisos de acceso.</li>
+            </ul>
+
+            <h3>🏭 Producción y BOM</h3>
+
+            <ul>
+                <li>Validación de listas BOM.</li>
+                <li>Relación entre componentes.</li>
+                <li>Control de ensamblajes.</li>
+                <li>Consistencia de producción.</li>
+            </ul>
+
+            <h3>🚚 Proveedores y Órdenes</h3>
+
+            <ul>
+                <li>Creación de órdenes de compra.</li>
+                <li>Recepción de materiales.</li>
+                <li>Asociación de proveedores.</li>
+                <li>Control de estados de órdenes.</li>
             </ul>
 
         </section>
 
         <section>
 
-            <h2>🌐 Pruebas de API</h2>
+            <h2>🌐 Pruebas Frontend</h2>
 
             <p>
-                InvenTree cuenta con pruebas específicas
-                para validar endpoints de la API REST.
-            </p>
-
-            <p>
-                Estas pruebas verifican:
+                El frontend también cuenta
+                con validaciones y pruebas
+                relacionadas con la interfaz.
             </p>
 
             <ul>
-                <li>Respuestas HTTP.</li>
-                <li>Autenticación.</li>
-                <li>Permisos de usuario.</li>
-                <li>Validación de datos.</li>
-                <li>Integridad de respuestas JSON.</li>
+                <li>Renderizado de componentes.</li>
+                <li>Visualización de tablas.</li>
+                <li>Validación de formularios.</li>
+                <li>Navegación entre módulos.</li>
+                <li>Compatibilidad de interfaz.</li>
             </ul>
 
         </section>
 
         <section>
 
-            <h2>🐳 Pruebas con Docker</h2>
+            <h2>🐳 Testing con Docker</h2>
 
             <p>
-                El proyecto incluye soporte Docker
-                para realizar pruebas en entornos aislados
-                y reproducibles.
-            </p>
-
-            <p>
-                Esto facilita:
+                El proyecto incluye configuración Docker
+                para pruebas y despliegues controlados.
             </p>
 
             <ul>
-                <li>Testing en múltiples entornos.</li>
-                <li>Despliegues consistentes.</li>
-                <li>Integración continua.</li>
+                <li>Pruebas en contenedores aislados.</li>
+                <li>Simulación de entornos reales.</li>
+                <li>Compatibilidad multiplataforma.</li>
+                <li>Automatización de despliegues.</li>
             </ul>
 
         </section>
@@ -225,49 +355,62 @@
             <h2>🚀 Integración Continua</h2>
 
             <p>
-                El repositorio implementa flujos
-                de integración continua (CI)
+                InvenTree implementa pipelines automáticos
                 mediante GitHub Actions.
             </p>
 
             <p>
-                Las validaciones automáticas incluyen:
+                Cada actualización del repositorio
+                ejecuta validaciones automáticas
+                para asegurar calidad del código.
             </p>
 
             <ul>
                 <li>Ejecución automática de pruebas.</li>
-                <li>Validación de código.</li>
-                <li>Análisis de calidad.</li>
-                <li>Control de errores antes de merges.</li>
+                <li>Análisis de errores.</li>
+                <li>Validación de dependencias.</li>
+                <li>Control de calidad del código.</li>
+                <li>Verificación antes de merges.</li>
             </ul>
 
         </section>
 
         <section>
 
-            <h2>📊 Resultados Generales</h2>
-
-            <ul>
-                <li>Alta estabilidad del sistema.</li>
-                <li>Correcta integración entre módulos.</li>
-                <li>API funcional y validada.</li>
-                <li>Compatibilidad con Docker.</li>
-                <li>Arquitectura preparada para escalabilidad.</li>
-            </ul>
-
-        </section>
-
-        <section>
-
-            <h2>🎯 Objetivo de las Pruebas</h2>
+            <h2>📈 Resultados y Objetivos</h2>
 
             <p>
-                Las pruebas realizadas en InvenTree
-                tienen como finalidad garantizar
-                la confiabilidad del sistema,
-                detectar errores tempranamente
-                y mantener la calidad del software
-                durante el desarrollo continuo.
+                El sistema de pruebas implementado
+                en InvenTree permite:
+            </p>
+
+            <ul>
+                <li>Reducir errores críticos.</li>
+                <li>Garantizar estabilidad del sistema.</li>
+                <li>Mejorar mantenibilidad.</li>
+                <li>Facilitar escalabilidad.</li>
+                <li>Asegurar compatibilidad entre módulos.</li>
+                <li>Optimizar el desarrollo colaborativo.</li>
+            </ul>
+
+        </section>
+
+        <section>
+
+            <h2>🎯 Conclusión</h2>
+
+            <p>
+                InvenTree implementa un sistema robusto
+                de testing y validación,
+                utilizando herramientas modernas
+                y automatización continua.
+            </p>
+
+            <p>
+                Esto convierte al proyecto
+                en una plataforma estable,
+                segura y adecuada para entornos empresariales
+                y de manufactura.
             </p>
 
         </section>
