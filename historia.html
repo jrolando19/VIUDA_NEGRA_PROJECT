@@ -1,430 +1,591 @@
-<!-- ================= historia.html ================= -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia - InvenTree</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia — VIUDA NEGRA PROJECT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Contributor card ─────────────────────────── */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
 
-    <style>
+    .contrib-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    .contrib-card:hover { border-color: var(--border-red); }
 
-        body{
-            background:#0d0d0d;
-            color:white;
-            line-height:1.8;
-        }
+    .contrib-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--red-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      border: 2px solid var(--border-red);
+    }
 
-        header{
-            background:#111;
-            padding:50px;
-            text-align:center;
-            border-bottom:2px solid #ff0000;
-        }
+    .contrib-info h4 { font-size:14px; font-weight:600; color:#fff; margin-bottom:4px; }
+    .contrib-info p  { font-size:12px; color:var(--text-dim); line-height:1.6; }
 
-        header h1{
-            color:#ff0000;
-            font-size:52px;
-            margin-bottom:15px;
-        }
+    /* ── Stats row ────────────────────────────────── */
+    .gh-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
 
-        header p{
-            color:#d1d1d1;
-            font-size:18px;
-        }
+    .gh-stat {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
 
-        .container{
-            width:90%;
-            max-width:1300px;
-            margin:auto;
-            padding:50px 0;
-        }
+    .gh-stat:hover { border-color: var(--border-red); }
 
-        section{
-            margin-bottom:40px;
-            background:#141414;
-            padding:35px;
-            border-radius:15px;
-            border:1px solid #222;
-        }
+    .gh-stat .gh-num {
+      font-family: var(--display);
+      font-size: 38px;
+      color: var(--red);
+      line-height: 1;
+    }
 
-        h2{
-            color:#ff0000;
-            margin-bottom:20px;
-            font-size:32px;
-        }
+    .gh-stat .gh-icon { font-size: 22px; margin-bottom: 6px; }
+    .gh-stat .gh-label { font-size: 11px; color: var(--text-muted); font-family: var(--mono); letter-spacing: 0.5px; margin-top: 4px; }
 
-        h3{
-            color:#ff4d4d;
-            margin-top:25px;
-            margin-bottom:15px;
-        }
+    /* ── Version table ────────────────────────────── */
+    .version-badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 3px 9px;
+      background: rgba(227,27,27,0.12);
+      color: #f87171;
+      border: 1px solid rgba(227,27,27,0.25);
+      border-radius: 4px;
+      font-weight: 600;
+    }
 
-        p, li{
-            color:#d1d1d1;
-        }
+    /* ── Impact section ───────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
 
-        ul{
-            margin-left:25px;
-        }
+    .impact-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
 
-        li{
-            margin-bottom:10px;
-        }
+    .impact-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .highlight{
-            color:#ff4d4d;
-            font-weight:bold;
-        }
+    .impact-card p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
 
-        .timeline{
-            border-left:3px solid #ff0000;
-            padding-left:25px;
-            margin-top:20px;
-        }
-
-        .timeline-item{
-            margin-bottom:35px;
-        }
-
-        .timeline-item h3{
-            margin-top:0;
-        }
-
-        .date{
-            color:#ff4d4d;
-            font-weight:bold;
-            margin-bottom:10px;
-        }
-
-        .btn{
-            display:inline-block;
-            margin-top:20px;
-            padding:12px 25px;
-            background:#ff0000;
-            color:white;
-            text-decoration:none;
-            border-radius:8px;
-            transition:0.3s;
-        }
-
-        .btn:hover{
-            background:#cc0000;
-        }
-
-        @media(max-width:768px){
-
-            header h1{
-                font-size:38px;
-            }
-
-            h2{
-                font-size:28px;
-            }
-
-        }
-
-    </style>
-
+    @media(max-width:768px){
+      .gh-stats { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ================= HEADER ================= -->
-
-    <header>
-
-        <h1>📜 Historia del Proyecto</h1>
-
-        <p>
-            Evolución histórica y crecimiento del repositorio Open Source InvenTree.
-        </p>
-
-        <a href="index.html" class="btn">
-            ⬅ Volver al Inicio
-        </a>
-
-    </header>
-
-    <!-- ================= CONTENIDO ================= -->
-
-    <div class="container">
-
-        <section>
-
-            <h2>📌 Introducción</h2>
-
-            <p>
-                <span class="highlight">InvenTree</span>
-                es una plataforma Open Source
-                orientada a la gestión de inventario,
-                control de stock y administración
-                de procesos de manufactura.
-            </p>
-
-            <p>
-                El proyecto fue desarrollado
-                con el objetivo de proporcionar
-                una solución moderna y flexible
-                para empresas, talleres,
-                laboratorios y organizaciones
-                que requieren control detallado
-                de componentes y productos.
-            </p>
-
-        </section>
-
-        <section>
-
-            <h2>🕒 Línea de Tiempo del Proyecto</h2>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2019 - Inicio del Proyecto
-                    </div>
-
-                    <p>
-                        InvenTree comenzó como un proyecto Open Source
-                        enfocado en resolver problemas relacionados
-                        con la gestión de inventario y seguimiento
-                        de componentes electrónicos y empresariales.
-                    </p>
-
-                    <p>
-                        Durante esta etapa inicial
-                        se desarrollaron las primeras funcionalidades
-                        relacionadas con inventario,
-                        piezas y almacenamiento.
-                    </p>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2020 - Crecimiento del Sistema
-                    </div>
-
-                    <p>
-                        El proyecto empezó a incorporar
-                        nuevas funcionalidades avanzadas,
-                        incluyendo:
-                    </p>
-
-                    <ul>
-                        <li>Gestión de proveedores.</li>
-                        <li>Órdenes de compra.</li>
-                        <li>Control de stock.</li>
-                        <li>API REST.</li>
-                        <li>Roles y permisos.</li>
-                    </ul>
-
-                    <p>
-                        También comenzó a crecer
-                        la comunidad Open Source
-                        que colaboraba mediante GitHub.
-                    </p>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2021 - Integración y Automatización
-                    </div>
-
-                    <p>
-                        Durante este periodo
-                        se implementaron mejoras importantes
-                        relacionadas con automatización,
-                        testing y despliegues.
-                    </p>
-
-                    <ul>
-                        <li>Soporte Docker.</li>
-                        <li>Integración continua.</li>
-                        <li>Pruebas automatizadas.</li>
-                        <li>Mejoras en la API REST.</li>
-                        <li>Sistema de plugins.</li>
-                    </ul>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2022 - Expansión Empresarial
-                    </div>
-
-                    <p>
-                        InvenTree comenzó a ser utilizado
-                        en proyectos empresariales,
-                        laboratorios y entornos industriales.
-                    </p>
-
-                    <p>
-                        El sistema mejoró su estabilidad
-                        y compatibilidad con diferentes entornos.
-                    </p>
-
-                    <ul>
-                        <li>Optimización de rendimiento.</li>
-                        <li>Escalabilidad empresarial.</li>
-                        <li>Mayor seguridad.</li>
-                        <li>Compatibilidad multiplataforma.</li>
-                    </ul>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2023 - Mejoras Modernas</div>
-
-                    <p>
-                        Se realizaron mejoras importantes
-                        en la interfaz,
-                        experiencia de usuario
-                        y arquitectura interna.
-                    </p>
-
-                    <ul>
-                        <li>Actualización del frontend.</li>
-                        <li>Mejoras visuales.</li>
-                        <li>Optimización de consultas.</li>
-                        <li>Mayor estabilidad API.</li>
-                    </ul>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="date">
-                        📅 2024 - Desarrollo Continuo
-                    </div>
-
-                    <p>
-                        El proyecto continúa evolucionando
-                        mediante contribuciones de la comunidad,
-                        correcciones de errores
-                        y nuevas funcionalidades.
-                    </p>
-
-                    <p>
-                        Actualmente InvenTree
-                        es considerado uno de los sistemas Open Source
-                        más completos para gestión de inventario.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section>
-
-            <h2>🌐 Comunidad Open Source</h2>
-
-            <p>
-                InvenTree cuenta con una comunidad activa
-                de desarrolladores y colaboradores
-                que participan mediante:
-            </p>
-
-            <ul>
-                <li>Pull Requests.</li>
-                <li>Reporte de errores.</li>
-                <li>Desarrollo de plugins.</li>
-                <li>Mejoras de documentación.</li>
-                <li>Pruebas del sistema.</li>
-            </ul>
-
-            <p>
-                GitHub se convirtió en el principal medio
-                para coordinar el crecimiento del proyecto.
-            </p>
-
-        </section>
-
-        <section>
-
-            <h2>🏗️ Evolución Técnica</h2>
-
-            <p>
-                A lo largo del tiempo,
-                el sistema evolucionó desde
-                una herramienta básica de inventario
-                hasta una plataforma empresarial completa.
-            </p>
-
-            <p>
-                Algunas mejoras importantes incluyen:
-            </p>
-
-            <ul>
-                <li>Integración API REST.</li>
-                <li>Arquitectura modular.</li>
-                <li>Testing automatizado.</li>
-                <li>Integración continua.</li>
-                <li>Compatibilidad Docker.</li>
-                <li>Sistema extensible mediante plugins.</li>
-            </ul>
-
-        </section>
-
-        <section>
-
-            <h2>🎯 Impacto del Proyecto</h2>
-
-            <p>
-                InvenTree ha sido utilizado
-                en múltiples entornos empresariales,
-                educativos y tecnológicos,
-                especialmente en:
-            </p>
-
-            <ul>
-                <li>Empresas de manufactura.</li>
-                <li>Laboratorios electrónicos.</li>
-                <li>Gestión de componentes.</li>
-                <li>Control de inventario industrial.</li>
-                <li>Proyectos tecnológicos Open Source.</li>
-            </ul>
-
-        </section>
-
-        <section>
-
-            <h2>📈 Estado Actual</h2>
-
-            <p>
-                Actualmente el proyecto
-                continúa en desarrollo activo
-                mediante actualizaciones constantes,
-                mejoras de seguridad
-                y optimización del rendimiento.
-            </p>
-
-            <p>
-                La plataforma sigue expandiéndose
-                gracias a la colaboración
-                de la comunidad Open Source.
-            </p>
-
-        </section>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">
+    <img src="Logo.jpg" alt="Logo">
+    <span>VIUDA NEGRA</span>
+  </a>
+  <ul class="navbar-links">
+    <li><a href="index.html">🏠 Inicio</a></li>
+    <li><a href="documentacion.html">📘 Documentación</a></li>
+    <li><a href="pruebas.html">🧪 Pruebas</a></li>
+    <li><a href="historia.html" class="active">📜 Historia</a></li>
+    <li><a href="https://github.com/inventree/InvenTree" target="_blank" class="nav-ext">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-tag fade-up">📜 Historia del Proyecto</div>
+    <h1 class="fade-up delay-1">EVOLU<span>CIÓN</span></h1>
+    <p class="fade-up delay-2">
+      Línea de tiempo completa del proyecto InvenTree: desde sus orígenes en 2019
+      hasta convertirse en uno de los sistemas Open Source de inventario más completos del mundo.
+    </p>
+    <div style="margin-top:28px;" class="fade-up delay-3">
+      <a href="index.html" class="btn btn-ghost" style="font-size:13px;">⬅ Volver al Inicio</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTENT ═══════════════ -->
+<div class="container">
+
+  <!-- ── 1. Intro ───────────────────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Introducción al <span>Proyecto</span></h2>
+    <div class="section-divider"></div>
+    <p>
+      <strong style="color:#fff">InvenTree</strong> nació de una necesidad concreta: los proyectos de
+      hardware open source y los laboratorios de electrónica carecían de una herramienta libre, moderna
+      y especializada para gestionar componentes electrónicos a escala. Las alternativas existentes
+      eran ERPs genéricos demasiado complejos o herramientas como PartKeepr, que quedaron sin mantenimiento.
+    </p>
+    <p>
+      Creado principalmente por <strong style="color:#fff">Oliver Walters</strong> (schrodinger-hat en GitHub),
+      el proyecto fue publicado en GitHub en 2019 y adoptó desde el primer día un modelo completamente abierto:
+      cualquier persona puede contribuir, usar y modificar el código bajo licencia MIT.
+    </p>
+
+    <div class="gh-stats">
+      <div class="gh-stat">
+        <div class="gh-icon">⭐</div>
+        <div class="gh-num">4.2K</div>
+        <div class="gh-label">GitHub Stars</div>
+      </div>
+      <div class="gh-stat">
+        <div class="gh-icon">🍴</div>
+        <div class="gh-num">800+</div>
+        <div class="gh-label">Forks</div>
+      </div>
+      <div class="gh-stat">
+        <div class="gh-icon">👥</div>
+        <div class="gh-num">120+</div>
+        <div class="gh-label">Contribuidores</div>
+      </div>
+      <div class="gh-stat">
+        <div class="gh-icon">🔀</div>
+        <div class="gh-num">8K+</div>
+        <div class="gh-label">Commits</div>
+      </div>
+      <div class="gh-stat">
+        <div class="gh-icon">🐛</div>
+        <div class="gh-num">3K+</div>
+        <div class="gh-label">Issues cerrados</div>
+      </div>
+      <div class="gh-stat">
+        <div class="gh-icon">📦</div>
+        <div class="gh-num">MIT</div>
+        <div class="gh-label">Licencia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. Timeline ────────────────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Línea de <span>Tiempo</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="timeline" style="margin-top:32px;">
+
+      <div class="tl-item">
+        <div class="tl-dot">🌱</div>
+        <div class="tl-body">
+          <div class="tl-date">2019 — Creación del Proyecto</div>
+          <h3>Primer commit y estructura base</h3>
+          <p>
+            InvenTree comenzó como un proyecto personal para resolver la gestión de componentes
+            electrónicos en talleres de hardware. El primer commit establece la estructura Django
+            básica con modelos para <strong style="color:#fff">Part</strong> y
+            <strong style="color:#fff">StockItem</strong>.
+          </p>
+          <p>
+            La decisión de usar <strong style="color:#fff">Django</strong> fue deliberada: su ORM maduro,
+            el admin integrado y el ecosistema de paquetes permitían avanzar rápidamente sin sacrificar
+            robustez. Python como lenguaje garantizaba accesibilidad para contribuidores de la comunidad maker.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-gray">Django 2.x</span>
+            <span class="badge badge-gray">Python 3.6</span>
+            <span class="badge badge-gray">SQLite</span>
+            <span class="badge badge-gray">Bootstrap UI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🚀</div>
+        <div class="tl-body">
+          <div class="tl-date">2020 — Primera API REST y Crecimiento</div>
+          <h3>Django REST Framework y comunidad activa</h3>
+          <p>
+            Se integra <strong style="color:#fff">Django REST Framework</strong>, convirtiendo InvenTree
+            en un sistema headless con API propia. Esto permitió el desarrollo de clientes externos
+            y la primera app móvil experimental.
+          </p>
+          <p>
+            La comunidad en GitHub comienza a crecer: primeros contribuidores externos aportan
+            el módulo de <strong style="color:#fff">Purchase Orders</strong>, gestión de proveedores
+            y el sistema de roles y permisos. El número de stars supera los 500.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-blue">API REST</span>
+            <span class="badge badge-gray">Purchase Orders</span>
+            <span class="badge badge-gray">Roles &amp; Permisos</span>
+            <span class="badge badge-green">500+ Stars</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🐳</div>
+        <div class="tl-body">
+          <div class="tl-date">2021 — Docker, CI/CD y Sistema de Plugins</div>
+          <h3>Infraestructura de producción y extensibilidad</h3>
+          <p>
+            Año de gran madurez técnica. Se publica el soporte oficial para
+            <strong style="color:#fff">Docker</strong>, incluyendo archivos
+            <code>docker-compose.yml</code> con PostgreSQL, Redis y Nginx listos para producción.
+          </p>
+          <p>
+            Se implementa el <strong style="color:#fff">sistema de plugins</strong>, una de las
+            características más valoradas: permite extender InvenTree con lógica personalizada
+            (notificaciones, integraciones con distribuidores, barcodes) sin tocar el núcleo.
+            También se configura <strong style="color:#fff">GitHub Actions</strong> para CI/CD completo.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-blue">Docker Compose</span>
+            <span class="badge badge-red">Plugin System</span>
+            <span class="badge badge-green">GitHub Actions CI</span>
+            <span class="badge badge-gray">PostgreSQL</span>
+            <span class="badge badge-gray">Redis + Celery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🏢</div>
+        <div class="tl-body">
+          <div class="tl-date">2022 — Adopción Empresarial y Escalabilidad</div>
+          <h3>InvenTree entra a entornos industriales reales</h3>
+          <p>
+            El proyecto comienza a ser adoptado en empresas reales de manufactura, laboratorios
+            de electrónica y organizaciones educativas. La comunidad reporta despliegues
+            con decenas de miles de partes en stock.
+          </p>
+          <p>
+            En respuesta, se trabaja fuertemente en <strong style="color:#fff">optimización de consultas</strong>
+            SQL, paginación en la API, mejoras de rendimiento en la UI y mayor soporte para
+            <strong style="color:#fff">múltiples almacenes</strong> y ubicaciones anidadas.
+            Se publican los primeros plugins oficiales para Digikey y Mouser.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-green">1K+ Stars</span>
+            <span class="badge badge-gray">Multi-warehouse</span>
+            <span class="badge badge-blue">Digikey Plugin</span>
+            <span class="badge badge-blue">Mouser Plugin</span>
+            <span class="badge badge-gray">SQL Optimization</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">⚛️</div>
+        <div class="tl-body">
+          <div class="tl-date">2023 — Nuevo Frontend React y App Móvil</div>
+          <h3>Modernización completa de la interfaz de usuario</h3>
+          <p>
+            El mayor cambio técnico de la historia del proyecto: reescritura completa del frontend
+            de Django templates + jQuery a una <strong style="color:#fff">SPA (Single Page Application)
+            con React y TypeScript</strong>, usando la librería de componentes Mantine.
+          </p>
+          <p>
+            Este cambio fue posible precisamente porque la API REST ya existía y era completa.
+            Simultáneamente se lanza la <strong style="color:#fff">aplicación móvil oficial</strong>
+            para iOS y Android, que permite escanear códigos QR y gestionar stock desde el almacén
+            físico en tiempo real.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-blue">React + TypeScript</span>
+            <span class="badge badge-blue">Mantine UI</span>
+            <span class="badge badge-green">App Móvil iOS/Android</span>
+            <span class="badge badge-red">SPA Architecture</span>
+            <span class="badge badge-green">3K+ Stars</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🔄</div>
+        <div class="tl-body">
+          <div class="tl-date">2024 — Estabilización y Nuevas Funcionalidades</div>
+          <h3>Madurez del sistema y expansión de módulos</h3>
+          <p>
+            El equipo consolida la migración al nuevo frontend, corrige regresiones
+            y trabaja en la paridad de características entre la UI nueva y la antigua.
+            Se añaden <strong style="color:#fff">Sales Orders mejoradas</strong>,
+            <strong style="color:#fff">Return Orders</strong> (devoluciones) y mejoras en
+            la gestión de precios por volumen.
+          </p>
+          <p>
+            La documentación oficial en <strong style="color:#fff">docs.inventree.org</strong>
+            recibe una renovación completa con guías de instalación, tutoriales de la API
+            y documentación de desarrollo de plugins.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-gray">Return Orders</span>
+            <span class="badge badge-gray">Volume Pricing</span>
+            <span class="badge badge-green">Docs renovadas</span>
+            <span class="badge badge-green">4K+ Stars</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🌐</div>
+        <div class="tl-body">
+          <div class="tl-date">2025-2026 — Desarrollo Continuo</div>
+          <h3>Estado actual: proyecto activo y en crecimiento</h3>
+          <p>
+            InvenTree continúa en desarrollo activo con releases frecuentes. La comunidad
+            supera los 120 contribuidores únicos. El proyecto es referenciado en comunidades
+            de hardware como KiCad, hackaday.io y foros de manufactura open source.
+          </p>
+          <p>
+            Las áreas de desarrollo activo incluyen mejoras en el sistema de reportes y
+            etiquetas, mayor integración con sistemas ERP externos, mejoras de rendimiento
+            en instancias con millones de registros y soporte de internacionalización expandido.
+          </p>
+          <div class="tl-tags">
+            <span class="badge badge-red">Desarrollo activo</span>
+            <span class="badge badge-green">120+ contribuidores</span>
+            <span class="badge badge-blue">Releases frecuentes</span>
+            <span class="badge badge-gray">Comunidad global</span>
+          </div>
+        </div>
+      </div>
 
     </div>
+  </div>
+
+  <!-- ── 3. Versiones ───────────────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Versiones <span>Destacadas</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Versión</th>
+            <th>Año</th>
+            <th>Hito Principal</th>
+            <th>Tecnologías añadidas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="version-badge">v0.1</span></td>
+            <td>2019</td>
+            <td>Primer release público — Part y Stock básicos</td>
+            <td>Django, SQLite, Bootstrap</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.5</span></td>
+            <td>2020</td>
+            <td>API REST completa con DRF</td>
+            <td>Django REST Framework, Token Auth</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.7</span></td>
+            <td>2020</td>
+            <td>Purchase Orders y gestión de proveedores</td>
+            <td>Módulo Order, Company</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.9</span></td>
+            <td>2021</td>
+            <td>Soporte Docker oficial y CI/CD</td>
+            <td>Docker Compose, GitHub Actions, PostgreSQL</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.11</span></td>
+            <td>2021</td>
+            <td>Sistema de plugins</td>
+            <td>Plugin architecture, Celery, Redis</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.13</span></td>
+            <td>2022</td>
+            <td>Multi-warehouse y optimizaciones SQL</td>
+            <td>Nested locations, query optimization</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.15</span></td>
+            <td>2023</td>
+            <td>Inicio migración a React SPA</td>
+            <td>React, TypeScript, Mantine UI</td>
+          </tr>
+          <tr>
+            <td><span class="version-badge">v0.17</span></td>
+            <td>2024</td>
+            <td>App móvil oficial y Return Orders</td>
+            <td>iOS/Android app, Return Orders</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 4. Comunidad ───────────────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Comunidad <span>Open Source</span></h2>
+    <div class="section-divider"></div>
+    <p>
+      El crecimiento de InvenTree es inseparable de su comunidad. El proyecto opera con un modelo
+      completamente abierto: cualquier persona puede reportar bugs, proponer funcionalidades y
+      contribuir código mediante Pull Requests.
+    </p>
+
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <div class="contrib-avatar">👨‍💻</div>
+        <div class="contrib-info">
+          <h4>Core Contributors</h4>
+          <p>Un pequeño equipo de maintainers revisa PRs, gestiona releases y define la dirección técnica del proyecto.</p>
+        </div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-avatar">🐛</div>
+        <div class="contrib-info">
+          <h4>Bug Reporters</h4>
+          <p>Miles de issues reportados por usuarios reales que ejecutan InvenTree en producción, mejorando la estabilidad del sistema.</p>
+        </div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-avatar">🌍</div>
+        <div class="contrib-info">
+          <h4>Traductores</h4>
+          <p>La comunidad mantiene traducciones del sistema a más de 20 idiomas usando la plataforma Crowdin.</p>
+        </div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-avatar">🧩</div>
+        <div class="contrib-info">
+          <h4>Desarrolladores de Plugins</h4>
+          <p>Numerosos plugins de terceros publicados en PyPI y GitHub amplían InvenTree con integraciones específicas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. Evolución técnica ───────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Evolución <span>Técnica</span></h2>
+    <div class="section-divider"></div>
+    <p>
+      A lo largo de los años, InvenTree evolucionó de ser un script Django básico
+      a una plataforma empresarial completamente moderna. Aquí los saltos técnicos más significativos.
+    </p>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <h4>🔌 De Templates a API REST</h4>
+        <p>
+          El cambio más importante de los primeros años: pasar de vistas Django tradicionales
+          (renderizado en servidor) a una API REST pura con DRF desacoupló completamente el
+          frontend y habilitó clientes móviles y terceros.
+        </p>
+      </div>
+      <div class="impact-card">
+        <h4>🐳 Containerización con Docker</h4>
+        <p>
+          La adopción de Docker Compose eliminó el problema de "funciona en mi máquina".
+          Cualquier organización puede desplegar InvenTree en producción con un único
+          comando sin necesidad de conocimiento profundo de Python.
+        </p>
+      </div>
+      <div class="impact-card">
+        <h4>⚛️ Migración a React SPA</h4>
+        <p>
+          La mayor apuesta técnica del proyecto. Reescribir el frontend en React permitió
+          una experiencia de usuario moderna, tablas virtualizadas para miles de registros
+          y la base para la app móvil nativa.
+        </p>
+      </div>
+      <div class="impact-card">
+        <h4>🧩 Arquitectura de Plugins</h4>
+        <p>
+          Diseñar el sistema de plugins con hooks claros y un registro centralizado
+          convirtió a InvenTree en una plataforma extensible: el núcleo se mantiene limpio
+          mientras la funcionalidad específica vive en plugins.
+        </p>
+      </div>
+      <div class="impact-card">
+        <h4>🔄 CI/CD con GitHub Actions</h4>
+        <p>
+          El pipeline automatizado garantiza que cualquier contribución sea validada
+          automáticamente. Esto escaló la capacidad del equipo: aceptar PRs de extraños
+          sin riesgo de romper producción.
+        </p>
+      </div>
+      <div class="impact-card">
+        <h4>📱 App Móvil Nativa</h4>
+        <p>
+          La app iOS/Android llevó InvenTree al almacén físico. Escanear un QR con el
+          móvil y ver el historial completo del item en tiempo real cambió radicalmente
+          el caso de uso para empresas de manufactura.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. Impacto ─────────────────────────────── -->
+  <div class="section-block fade-up">
+    <h2>Impacto en la <span>Industria</span></h2>
+    <div class="section-divider"></div>
+    <ul class="prose-list">
+      <li>Adoptado como alternativa Open Source a PartKeepr (descontinuado en 2020) por miles de proyectos de electrónica.</li>
+      <li>Usado en empresas de manufactura de hardware para gestión de inventario en producción con más de 50,000 partes.</li>
+      <li>Referenciado como caso de estudio en comunidades como KiCad, hackaday.io y foros de electrónica maker.</li>
+      <li>Competidor directo de Snipe-IT (activos IT) y ERPNext (ERP general) en el nicho de manufactura open source.</li>
+      <li>Más de 120 contribuidores de todo el mundo han aportado código, documentación o traducciones.</li>
+      <li>Publicado en Docker Hub con decenas de miles de pulls, indicando adopción real en producción.</li>
+      <li>La API REST es usada por equipos que integran InvenTree con sistemas ERP corporativos existentes.</li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <span>© 2026 VIUDA NEGRA PROJECT</span>
+  <span>
+    <a href="https://github.com/inventree/InvenTree" target="_blank">inventree/InvenTree</a>
+    &nbsp;·&nbsp;
+    <a href="https://docs.inventree.org" target="_blank">docs.inventree.org</a>
+  </span>
+</footer>
 
 </body>
 </html>
