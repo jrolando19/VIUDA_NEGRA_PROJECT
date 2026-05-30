@@ -1,361 +1,604 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIUDA NEGRA PROJECT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIUDA NEGRA PROJECT — InvenTree</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Hero section ─────────────────────────────── */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(227,27,27,0.15), transparent),
+        linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
+    }
 
-    <style>
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+    }
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    .hero-inner {
+      max-width: 920px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
 
-        body{
-            background:#000;
-            color:white;
-            overflow-x:hidden;
-        }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
 
-        header{
-            width:100%;
-            height:100vh;
-            background:
-                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');
-            background-size:cover;
-            background-position:center;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:20px;
-        }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 60px;
+      background: var(--border-red);
+    }
 
-        .hero{
-            max-width:1000px;
-        }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(56px, 10vw, 110px);
+      letter-spacing: 6px;
+      line-height: 0.9;
+      color: #fff;
+      margin-bottom: 10px;
+    }
 
-        .hero h1{
-            font-size:75px;
-            color:#ff0000;
-            margin-bottom:20px;
-            letter-spacing:4px;
-        }
+    .hero-title .accent { color: var(--red); }
 
-        .hero p{
-            font-size:22px;
-            color:#e5e5e5;
-            line-height:1.8;
-            margin-bottom:40px;
-        }
+    .hero-subtitle {
+      font-family: var(--display);
+      font-size: clamp(18px, 3.5vw, 32px);
+      letter-spacing: 8px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
 
-        .buttons{
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:20px;
-        }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      line-height: 1.85;
+    }
 
-        .btn{
-            padding:15px 35px;
-            background:#ff0000;
-            color:white;
-            text-decoration:none;
-            border-radius:8px;
-            font-weight:bold;
-            transition:0.3s;
-            font-size:16px;
-            border:2px solid transparent;
-        }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-        .btn:hover{
-            background:transparent;
-            border:2px solid #ff0000;
-            transform:translateY(-5px);
-        }
+    /* ── Intro section ────────────────────────────── */
+    .intro-section {
+      padding: 80px 48px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
 
-        section{
-            padding:80px 10%;
-            background:#0d0d0d;
-        }
+    .intro-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
 
-        .section-title{
-            text-align:center;
-            margin-bottom:50px;
-        }
+    .intro-text h2 {
+      font-family: var(--display);
+      font-size: 46px;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.05;
+    }
 
-        .section-title h2{
-            font-size:42px;
-            color:#ff0000;
-        }
+    .intro-text h2 span { color: var(--red); }
 
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-            gap:25px;
-        }
+    .intro-text p {
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
 
-        .card{
-            background:#141414;
-            padding:30px;
-            border-radius:15px;
-            border:1px solid #222;
-            transition:0.3s;
-        }
+    .intro-visual {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .card:hover{
-            transform:translateY(-8px);
-            border-color:#ff0000;
-        }
+    .intro-visual::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
 
-        .card h3{
-            color:#ff0000;
-            margin-bottom:15px;
-        }
+    .iv-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
 
-        .card p{
-            color:#d1d1d1;
-            line-height:1.8;
-        }
+    .iv-dot { width:12px; height:12px; border-radius:50%; }
+    .iv-dot.r { background:#e33; }
+    .iv-dot.y { background:#e8b135; }
+    .iv-dot.g { background:#4ade80; }
 
-        footer{
-            background:#050505;
-            padding:30px;
-            text-align:center;
-            border-top:1px solid #111;
-        }
+    .iv-line { display:flex; gap:10px; margin-bottom:7px; font-size:12px; }
+    .iv-ln { color: var(--text-muted); min-width: 20px; }
+    .iv-kw { color: #60a5fa; }
+    .iv-str { color: #4ade80; }
+    .iv-fn { color: #f59e0b; }
+    .iv-cm { color: var(--text-muted); }
+    .iv-var { color: #e879f9; }
 
-        footer p{
-            color:#777;
-        }
+    /* ── Main cards ───────────────────────────────── */
+    .main-section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
 
-        @media(max-width:768px){
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-            .hero h1{
-                font-size:45px;
-            }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
-            .hero p{
-                font-size:18px;
-            }
+    .nav-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
 
-            .buttons{
-                flex-direction:column;
-                align-items:center;
-            }
+    .nav-card {
+      display: block;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-decoration: none;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
 
-            .btn{
-                width:260px;
-            }
+    .nav-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
 
-            .section-title h2{
-                font-size:32px;
-            }
+    .nav-card:hover {
+      border-color: var(--border-red);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-red);
+    }
 
-        }
-.logo{
-    width:180px;
-    margin-bottom:25px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(255,0,0,0.5);
-}
+    .nav-card:hover::after { transform: scaleX(1); }
 
-    </style>
+    .nav-card-icon { font-size: 34px; margin-bottom: 16px; display: block; }
 
+    .nav-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .nav-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .nav-card-arrow {
+      font-size: 12px;
+      color: var(--red);
+      font-family: var(--mono);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+
+    .nav-card:hover .nav-card-arrow { gap: 10px; }
+
+    /* ── Features grid ────────────────────────────── */
+    .features-section {
+      padding: 0 48px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feat-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .feat-item:hover { border-color: var(--border-red); }
+
+    .feat-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+    .feat-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .feat-item p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+
+    /* ── Why section ──────────────────────────────── */
+    .why-section {
+      padding: 80px 48px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .why-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .why-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .why-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .why-card p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+
+    .why-card ul { margin-left: 16px; }
+    .why-card li { font-size: 13px; color: var(--text-dim); margin-bottom: 5px; }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-cards { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-section { padding: 90px 20px 60px; }
+      .intro-section, .main-section, .features-section, .why-section { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ================= HEADER ================= -->
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">
+    <img src="Logo.jpg" alt="Logo">
+    <span>VIUDA NEGRA</span>
+  </a>
+  <ul class="navbar-links">
+    <li><a href="index.html" class="active">🏠 Inicio</a></li>
+    <li><a href="documentacion.html">📘 Documentación</a></li>
+    <li><a href="pruebas.html">🧪 Pruebas</a></li>
+    <li><a href="historia.html">📜 Historia</a></li>
+    <li><a href="https://github.com/inventree/InvenTree" target="_blank" class="nav-ext">GitHub ↗</a></li>
+  </ul>
+</nav>
 
-    <header>
-
-        <div class="hero">
-<img 
-            src="Logo.jpg" 
-            alt="Logo InvenTree"
-            class="logo"
-        >
-
-            <h1>VIUDA NEGRA PROJECT</h1>
-
-            <p>
-                Plataforma principal de acceso a la documentación,
-                pruebas realizadas y análisis histórico del repositorio InvenTree.
-            </p>
-
-            <div class="buttons">
-
-                <a href="documentacion.html" class="btn">
-                    📘 Documentación
-                </a>
-
-                <a href="pruebas.html" class="btn">
-                    🧪 Pruebas
-                </a>
-
-                <a href="historia.html" class="btn">
-                    📜 Historia
-                </a>
-<a 
-    href="https://github.com/inventree/InvenTree" 
-    target="_blank" 
-    class="btn"
->
-    🔗 Proyecto Original
-</a>
-            </div>
-
-        </div>
-
-    </header>
-
-    <!-- ================= SECCIONES ================= -->
-
-    <section>
-
-        <div class="section-title">
-            <h2>Accesos Principales</h2>
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>📘 Documentación</h3>
-
-                <p>
-                    Acceso a la documentación técnica y general
-                    relacionada con el repositorio InvenTree,
-                    funcionalidades y arquitectura del sistema.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>🧪 Pruebas</h3>
-
-                <p>
-                    Sección dedicada a las pruebas realizadas
-                    sobre el repositorio, incluyendo análisis,
-                    validaciones y resultados obtenidos.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>📜 Historia</h3>
-
-                <p>
-                    Información relacionada con la evolución,
-                    desarrollo y crecimiento histórico
-                    del proyecto InvenTree.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-<section>
-
-    <div class="section-title">
-        <h2>Aplicación Real y Motivo de Elección</h2>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero-section">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-up">Open Source · Gestión de Inventario · Python / Django</div>
+    <div class="fade-up" style="display:flex;justify-content:center;margin-bottom:28px;">
+      <img
+        src="Logo.jpg"
+        alt="Logo VIUDA NEGRA"
+        style="
+          width: 110px;
+          height: 110px;
+          object-fit: cover;
+          border-radius: 22px;
+          border: 2px solid rgba(227,27,27,0.5);
+          box-shadow: 0 0 40px rgba(227,27,27,0.35), 0 0 80px rgba(227,27,27,0.12);
+        "
+      >
     </div>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>🏭 Aplicación en Entornos Reales</h3>
-
-            <p>
-                InvenTree es utilizado en empresas,
-                laboratorios y proyectos tecnológicos
-                para la gestión de inventario,
-                seguimiento de componentes,
-                control de stock y procesos de manufactura.
-            </p>
-
-            <p>
-                Su implementación permite organizar productos,
-                automatizar procesos y mejorar
-                la trazabilidad de materiales
-                dentro de entornos empresariales reales.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>⚔️ Competencia del Sistema</h3>
-
-            <p>
-                InvenTree compite con plataformas
-                de gestión empresarial e inventario como:
-            </p>
-
-            <ul>
-                <li>Odoo Inventory</li>
-                <li>ERPNext</li>
-                <li>Snipe-IT</li>
-                <li>PartKeepr</li>
-                <li>Zoho Inventory</li>
-            </ul>
-
-            <p>
-                Sin embargo, destaca por ser Open Source,
-                altamente extensible y especializado
-                en control de componentes y manufactura.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>🎯 Motivo de Elección</h3>
-
-            <p>
-                El proyecto InvenTree fue seleccionado
-                debido a su arquitectura moderna,
-                documentación técnica,
-                sistema de pruebas automatizadas
-                y complejidad empresarial.
-            </p>
-
-            <p>
-                También fue elegido porque permite analizar:
-            </p>
-
-            <ul>
-                <li>Testing de software.</li>
-                <li>Arquitectura backend.</li>
-                <li>Integración continua.</li>
-                <li>API REST.</li>
-                <li>Sistemas Open Source reales.</li>
-            </ul>
-
-        </div>
-
+    <h1 class="hero-title fade-up delay-1">
+      <span class="accent">VIUDA</span><br>NEGRA
+    </h1>
+    <div class="hero-subtitle fade-up delay-2">PROJECT</div>
+    <p class="hero-desc fade-up delay-3">
+      Documentación, análisis histórico y pruebas del repositorio
+      <strong style="color:#fff">InvenTree</strong> — plataforma Open Source
+      de gestión de inventario, control de stock y manufactura.
+    </p>
+    <div class="hero-buttons fade-up delay-4">
+      <a href="documentacion.html" class="btn">📘 Documentación</a>
+      <a href="pruebas.html" class="btn btn-ghost">🧪 Pruebas</a>
+      <a href="historia.html" class="btn btn-ghost">📜 Historia</a>
+      <a href="https://github.com/inventree/InvenTree" target="_blank" class="btn btn-ghost">🔗 Repo Original ↗</a>
     </div>
-
+  </div>
 </section>
-    <!-- ================= FOOTER ================= -->
 
-    <footer>
+<!-- ═══════════════ INTRO ═══════════════ -->
+<section class="intro-section">
+  <div class="intro-grid">
+    <div class="intro-text fade-up">
+      <h2>¿Qué es <span>InvenTree</span>?</h2>
+      <p>
+        InvenTree es un sistema Open Source de gestión de inventario construido sobre
+        <strong style="color:#fff">Python</strong> y <strong style="color:#fff">Django</strong>.
+        Diseñado para ser ligero y flexible, cubre desde pequeños talleres y proyectos hobbyistas
+        hasta entornos industriales y empresariales complejos.
+      </p>
+      <p>
+        Su núcleo es un backend Django con una base de datos relacional (PostgreSQL o SQLite),
+        una interfaz web moderna en React, y una <strong style="color:#fff">API REST</strong>
+        completa para integraciones externas.
+      </p>
+      <p>
+        Distribuido bajo licencia <strong style="color:#fff">MIT</strong>, cualquier organización
+        puede instalar, modificar y extender el sistema sin restricciones comerciales.
+      </p>
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <span class="badge badge-green">MIT License</span>
+        <span class="badge badge-blue">Python / Django</span>
+        <span class="badge badge-red">REST API</span>
+        <span class="badge badge-gray">Docker Ready</span>
+      </div>
+    </div>
 
-        <p>
-            © 2026 VIUDA NEGRA PROJECT
-        </p>
+    <div class="intro-visual fade-up delay-2">
+      <div class="iv-bar">
+        <div class="iv-dot r"></div>
+        <div class="iv-dot y"></div>
+        <div class="iv-dot g"></div>
+        <span style="margin-left:6px;font-size:11px;color:var(--text-muted)">inventree / models.py</span>
+      </div>
+      <div class="iv-line"><span class="iv-ln">1</span><span class="iv-kw">from</span><span style="color:var(--text-dim)">&nbsp;django.db&nbsp;</span><span class="iv-kw">import</span><span style="color:var(--text-dim)">&nbsp;models</span></div>
+      <div class="iv-line"><span class="iv-ln">2</span><span class="iv-kw">from</span><span style="color:var(--text-dim)">&nbsp;stock.models&nbsp;</span><span class="iv-kw">import</span><span style="color:var(--text-dim)">&nbsp;StockItem</span></div>
+      <div class="iv-line"><span class="iv-ln">3</span></div>
+      <div class="iv-line"><span class="iv-ln">4</span><span class="iv-kw">class</span>&nbsp;<span class="iv-fn">Part</span><span style="color:var(--text-dim)">(models.Model):</span></div>
+      <div class="iv-line"><span class="iv-ln">5</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-cm"># Unidad fundamental del inventario</span></div>
+      <div class="iv-line"><span class="iv-ln">6</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">name</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">CharField</span>(<span class="iv-str">max_length</span>=<span style="color:#f59e0b">100</span>)</div>
+      <div class="iv-line"><span class="iv-ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">category</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">ForeignKey</span>(</div>
+      <div class="iv-line"><span class="iv-ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-str">'PartCategory'</span>,&nbsp;<span class="iv-str">on_delete</span>=<span class="iv-fn">models</span>.<span class="iv-var">SET_NULL</span>)</div>
+      <div class="iv-line"><span class="iv-ln">9</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">description</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">TextField</span>(<span class="iv-str">blank</span>=<span class="iv-kw">True</span>)</div>
+      <div class="iv-line"><span class="iv-ln">10</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">active</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">BooleanField</span>(<span class="iv-str">default</span>=<span class="iv-kw">True</span>)</div>
+      <div class="iv-line"><span class="iv-ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">purchaseable</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">BooleanField</span>(<span class="iv-str">default</span>=<span class="iv-kw">True</span>)</div>
+      <div class="iv-line"><span class="iv-ln">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="iv-var">salable</span>&nbsp;=&nbsp;<span class="iv-fn">models</span>.<span class="iv-fn">BooleanField</span>(<span class="iv-str">default</span>=<span class="iv-kw">False</span>)</div>
+    </div>
+  </div>
+</section>
 
-    </footer>
+<!-- ═══════════════ NAV CARDS ═══════════════ -->
+<div class="main-section">
+  <div class="section-label">Secciones del proyecto</div>
+
+  <div class="nav-cards">
+    <a href="documentacion.html" class="nav-card fade-up">
+      <span class="nav-card-icon">📘</span>
+      <h3>Documentación</h3>
+      <p>
+        Arquitectura técnica detallada, módulos del sistema, tecnologías,
+        API REST, seguridad, instalación con Docker y estructura del backend.
+      </p>
+      <div class="nav-card-arrow">Ver documentación →</div>
+    </a>
+
+    <a href="pruebas.html" class="nav-card fade-up delay-1">
+      <span class="nav-card-icon">🧪</span>
+      <h3>Pruebas</h3>
+      <p>
+        Análisis del sistema de testing: pruebas unitarias, integración,
+        cobertura de código, GitHub Actions CI/CD y resultados de validación.
+      </p>
+      <div class="nav-card-arrow">Ver pruebas →</div>
+    </a>
+
+    <a href="historia.html" class="nav-card fade-up delay-2">
+      <span class="nav-card-icon">📜</span>
+      <h3>Historia</h3>
+      <p>
+        Línea de tiempo del proyecto desde 2019, hitos clave, crecimiento
+        de la comunidad y evolución técnica del repositorio.
+      </p>
+      <div class="nav-card-arrow">Ver historia →</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<div class="features-section">
+  <div class="section-label">Funcionalidades clave del sistema</div>
+  <div class="features-grid">
+    <div class="feat-item fade-up">
+      <span class="feat-icon">📦</span>
+      <div>
+        <h4>Gestión de Partes</h4>
+        <p>Organización jerárquica de componentes con categorías, parámetros y variantes.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up delay-1">
+      <span class="feat-icon">📊</span>
+      <div>
+        <h4>Control de Stock</h4>
+        <p>Seguimiento en tiempo real con historial completo de movimientos y ubicaciones.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up delay-2">
+      <span class="feat-icon">🏭</span>
+      <div>
+        <h4>BOM & Manufactura</h4>
+        <p>Listas de materiales inteligentes y órdenes de ensamblaje con asignación automática.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up">
+      <span class="feat-icon">🛒</span>
+      <div>
+        <h4>Órdenes de Compra</h4>
+        <p>Gestión completa de proveedores, pedidos, recepción y precios por volumen.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up delay-1">
+      <span class="feat-icon">🔌</span>
+      <div>
+        <h4>API REST Completa</h4>
+        <p>Integración con sistemas externos mediante endpoints documentados con OpenAPI.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up delay-2">
+      <span class="feat-icon">🧩</span>
+      <div>
+        <h4>Sistema de Plugins</h4>
+        <p>Extensión de funcionalidades sin modificar el núcleo del sistema.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up">
+      <span class="feat-icon">🏷️</span>
+      <div>
+        <h4>Códigos de Barras</h4>
+        <p>Soporte para códigos QR, DataMatrix y lectores externos para trazabilidad física.</p>
+      </div>
+    </div>
+    <div class="feat-item fade-up delay-1">
+      <span class="feat-icon">📱</span>
+      <div>
+        <h4>App Móvil</h4>
+        <p>Aplicación nativa para iOS y Android para escaneo y gestión desde campo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ WHY ═══════════════ -->
+<section class="why-section">
+  <div class="why-inner">
+    <div style="max-width:600px;">
+      <div class="section-label" style="margin-bottom:16px;">Motivo de elección</div>
+      <h2 style="font-family:var(--display);font-size:38px;letter-spacing:2px;color:#fff;margin-bottom:12px;">
+        ¿Por qué <span style="color:var(--red)">InvenTree</span>?
+      </h2>
+      <p style="color:var(--text-dim);font-size:15px;">
+        El proyecto fue seleccionado por su relevancia técnica y su valor como caso de estudio real
+        de un sistema Open Source profesional en producción.
+      </p>
+    </div>
+
+    <div class="why-grid" style="margin-top:36px;">
+      <div class="why-card fade-up">
+        <h3>🏭 Uso en Entornos Reales</h3>
+        <p>Empleado en empresas de manufactura, laboratorios electrónicos y startups tecnológicas alrededor del mundo para gestión real de inventario.</p>
+      </div>
+      <div class="why-card fade-up delay-1">
+        <h3>⚔️ Competencia Directa</h3>
+        <ul>
+          <li>Odoo Inventory</li>
+          <li>ERPNext</li>
+          <li>Snipe-IT</li>
+          <li>PartKeepr (descontinuado)</li>
+          <li>Zoho Inventory</li>
+        </ul>
+        <p style="margin-top:10px;">Destaca por ser Open Source puro, especializado en manufactura y con API de primera clase.</p>
+      </div>
+      <div class="why-card fade-up delay-2">
+        <h3>🎯 Valor Académico</h3>
+        <p>Permite estudiar arquitectura Django avanzada, testing profesional, CI/CD con GitHub Actions, diseño de API REST y extensibilidad con plugins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <span>© 2026 VIUDA NEGRA PROJECT</span>
+  <span>
+    <a href="https://github.com/inventree/InvenTree" target="_blank">inventree/InvenTree</a>
+    &nbsp;·&nbsp;
+    <a href="https://docs.inventree.org" target="_blank">docs.inventree.org</a>
+  </span>
+</footer>
 
 </body>
 </html>
