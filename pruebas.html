@@ -6,6 +6,36 @@
   <title>Pruebas — VIUDA NEGRA PROJECT</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* ── GitHub link chip ─────────────────────────── */
+    .gh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 3px 10px;
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    .gh-link:hover {
+      color: #60a5fa;
+      border-color: rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.07);
+    }
+
+    .gh-link svg {
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .gh-link:hover svg { opacity: 1; }
+
     /* ── Coverage bar ─────────────────────────────── */
     .coverage-grid {
       display: flex;
@@ -28,8 +58,11 @@
       font-size: 13px;
       font-weight: 500;
       color: #fff;
-      min-width: 140px;
+      min-width: 160px;
       font-family: var(--mono);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .cov-bar-wrap {
@@ -44,7 +77,6 @@
       height: 100%;
       border-radius: 4px;
       background: linear-gradient(90deg, var(--red), #ff6b6b);
-      transition: width 1.2s ease;
     }
 
     .cov-pct {
@@ -106,7 +138,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* ── Test file tree ───────────────────────────── */
+    /* ── File tree ────────────────────────────────── */
     .file-tree {
       font-family: var(--mono);
       font-size: 13px;
@@ -140,34 +172,44 @@
     .ft-dot.r { background:#e33; }
     .ft-dot.y { background:#e8b135; }
     .ft-dot.g { background:#4ade80; }
-
     .ft-title { font-size: 11px; color: var(--text-muted); margin-left: 6px; }
 
-    .ft-dir { color: #60a5fa; margin-bottom: 4px; }
-    .ft-file { color: var(--text-dim); margin-bottom: 3px; padding-left: 20px; }
-    .ft-file.test { color: #4ade80; }
-    .ft-comment { color: var(--text-muted); padding-left: 20px; font-size: 11px; margin-bottom: 6px; }
+    .ft-dir { color: #60a5fa; margin-bottom: 6px; margin-top: 6px; }
+    .ft-file-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      padding-left: 20px;
+      gap: 12px;
+    }
+    .ft-file { color: #4ade80; }
+    .ft-comment { color: var(--text-muted); padding-left: 20px; font-size: 11px; margin-bottom: 8px; }
     .ft-indent { padding-left: 20px; }
 
     /* ── Test results table ───────────────────────── */
     .pass { color: #4ade80; font-weight: 600; font-family: var(--mono); font-size: 12px; }
     .fail { color: #f87171; font-weight: 600; font-family: var(--mono); font-size: 12px; }
-    .skip { color: #fbbf24; font-weight: 600; font-family: var(--mono); font-size: 12px; }
 
-    /* ── Test detail cards ────────────────────────── */
+    /* ── Test detail card ─────────────────────────── */
     .test-detail {
       background: var(--bg3);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 26px;
       margin-bottom: 16px;
+      transition: border-color 0.2s;
     }
+
+    .test-detail:hover { border-color: var(--border-red); }
 
     .test-detail-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 12px;
       margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
     .test-detail-head h3 {
@@ -179,14 +221,29 @@
       gap: 10px;
     }
 
-    .test-detail p { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
-    .test-detail ul { margin-left: 16px; }
+    .test-detail-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .test-detail p  { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
+    .test-detail ul { margin-left: 16px; margin-bottom: 10px; }
     .test-detail li { font-size: 13px; color: var(--text-dim); margin-bottom: 5px; }
+
+    /* ── method badges ────────────────────────────── */
+    .method { display:inline-block; padding:2px 8px; border-radius:4px; font-family:var(--mono); font-size:11px; font-weight:700; }
+    .method.get  { background:rgba(59,130,246,0.15); color:#60a5fa; }
+    .method.post { background:rgba(34,197,94,0.15);  color:#4ade80; }
+    .method.put  { background:rgba(251,191,36,0.15); color:#fbbf24; }
+    .method.del  { background:rgba(239,68,68,0.15);  color:#f87171; }
 
     @media(max-width:768px) {
       .pipeline { gap: 16px; }
       .pipe-step::after { display: none; }
-      .cov-name { min-width: 100px; font-size: 11px; }
+      .cov-name { min-width: 90px; font-size: 11px; }
+      .ft-file-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -213,11 +270,12 @@
     <div class="page-tag fade-up">🧪 Sistema de Testing</div>
     <h1 class="fade-up delay-1">PRUEBAS &amp; <span>QA</span></h1>
     <p class="fade-up delay-2">
-      Análisis completo del sistema de pruebas de InvenTree: pruebas unitarias,
-      de integración, cobertura de código, CI/CD con GitHub Actions y validaciones de API.
+      Análisis completo del sistema de pruebas de InvenTree. Cada sección incluye
+      link directo al archivo de test en GitHub para que puedas ver el código real.
     </p>
-    <div style="margin-top:28px;" class="fade-up delay-3">
+    <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;" class="fade-up delay-3">
       <a href="index.html" class="btn btn-ghost" style="font-size:13px;">⬅ Volver al Inicio</a>
+      <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree" target="_blank" class="btn" style="font-size:13px;">📁 Ver código en GitHub ↗</a>
     </div>
   </div>
 </div>
@@ -230,82 +288,153 @@
     <h2>Sistema de <span>Testing</span></h2>
     <div class="section-divider"></div>
     <p>
-      InvenTree mantiene un sistema de testing robusto y automatizado que cubre el backend
-      Django, la API REST y los flujos críticos de negocio. El objetivo es garantizar que
-      cada merge a la rama principal no rompa funcionalidad existente.
+      InvenTree mantiene un sistema de testing automatizado que cubre el backend Django, la API REST
+      y los flujos críticos de negocio. Usa <strong style="color:#fff">pytest</strong> como runner
+      principal junto con el <strong style="color:#fff">Django Test Framework</strong>. Cada módulo
+      tiene su propio directorio de pruebas, y el pipeline de
+      <strong style="color:#fff">GitHub Actions</strong> ejecuta todos los tests automáticamente
+      ante cada Pull Request.
     </p>
-    <p>
-      El proyecto usa <strong style="color:#fff">pytest</strong> como runner principal combinado
-      con el <strong style="color:#fff">Django Test Framework</strong>, lo que permite aprovechar
-      tanto las utilidades nativas de Django (cliente de pruebas, fixtures, base de datos en memoria)
-      como las capacidades avanzadas de pytest (fixtures, parametrización, plugins).
-    </p>
-
     <div class="stat-grid" style="margin-top:32px;">
       <div class="stat-box"><div class="num">2000+</div><div class="label">Tests totales</div></div>
       <div class="stat-box"><div class="num">pytest</div><div class="label">Runner principal</div></div>
       <div class="stat-box"><div class="num">CI/CD</div><div class="label">GitHub Actions</div></div>
-      <div class="stat-box"><div class="num">4</div><div class="label">Bases de datos de test</div></div>
-      <div class="stat-box"><div class="num">auto</div><div class="label">Ejecución por PR</div></div>
+      <div class="stat-box"><div class="num">85%+</div><div class="label">Cobertura media</div></div>
+      <div class="stat-box"><div class="num">auto</div><div class="label">Ejecución en PR</div></div>
     </div>
   </div>
 
-  <!-- ── 2. Estructura de archivos de test ─────── -->
+  <!-- ── 2. Árbol de archivos ────────────────────── -->
   <div class="section-block fade-up">
-    <h2>Estructura de <span>Archivos</span></h2>
+    <h2>Estructura de <span>Archivos de Test</span></h2>
     <div class="section-divider"></div>
     <p>
-      Los tests están colocados junto al código que verifican, dentro de cada app Django.
-      Cada módulo principal tiene su propio archivo o directorio de pruebas.
+      Los tests están colocados dentro de cada app Django. Todos los archivos están disponibles
+      en el repositorio oficial. Haz clic en cualquier archivo para verlo directamente en GitHub.
     </p>
 
     <div class="file-tree">
       <div class="ft-header">
         <div class="ft-dot r"></div><div class="ft-dot y"></div><div class="ft-dot g"></div>
-        <span class="ft-title">InvenTree / — estructura de tests</span>
+        <span class="ft-title">inventree/InvenTree — src/backend/InvenTree/</span>
       </div>
-      <div class="ft-dir">📁 InvenTree/</div>
+
+      <div class="ft-dir">📁 part/</div>
       <div class="ft-indent">
-        <div class="ft-dir">📁 part/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — Part, Category, BOM, Parameters</div>
-          <div class="ft-file test">✅ test_api.py — Endpoints REST del módulo Part</div>
-          <div class="ft-comment"># +450 casos de test</div>
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_part.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            src/backend/.../part/tests/
+          </a>
         </div>
-        <div class="ft-dir">📁 stock/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — StockItem, Location, Transfer</div>
-          <div class="ft-file test">✅ test_api.py — Endpoints REST de stock</div>
-          <div class="ft-comment"># +380 casos de test</div>
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_api.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            part/tests ↗
+          </a>
         </div>
-        <div class="ft-dir">📁 build/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — BuildOrder, BuildItem, BOM check</div>
-          <div class="ft-file test">✅ test_api.py — Endpoints de órdenes de manufactura</div>
-          <div class="ft-comment"># +290 casos de test</div>
+        <div class="ft-comment"># ~450 casos de test</div>
+      </div>
+
+      <div class="ft-dir">📁 stock/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_stock.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            stock/tests ↗
+          </a>
         </div>
-        <div class="ft-dir">📁 order/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — PurchaseOrder, SalesOrder, Return</div>
-          <div class="ft-file test">✅ test_api.py — Endpoints de órdenes</div>
-          <div class="ft-comment"># +310 casos de test</div>
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_api.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            stock/tests ↗
+          </a>
         </div>
-        <div class="ft-dir">📁 company/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — Supplier, Manufacturer, Contact</div>
-          <div class="ft-comment"># +180 casos de test</div>
+        <div class="ft-comment"># ~380 casos de test</div>
+      </div>
+
+      <div class="ft-dir">📁 build/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_build.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/build/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            build/tests ↗
+          </a>
         </div>
-        <div class="ft-dir">📁 users/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — Auth, Roles, Permissions, Tokens</div>
-          <div class="ft-comment"># +160 casos de test</div>
+        <div class="ft-comment"># ~290 casos de test</div>
+      </div>
+
+      <div class="ft-dir">📁 order/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_order.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/order/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            order/tests ↗
+          </a>
         </div>
-        <div class="ft-dir">📁 plugin/</div>
-        <div class="ft-indent">
-          <div class="ft-file test">✅ tests.py — Plugin loading, hooks, registry</div>
-          <div class="ft-comment"># +120 casos de test</div>
+        <div class="ft-comment"># ~310 casos de test</div>
+      </div>
+
+      <div class="ft-dir">📁 company/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_company.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/company/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            company/tests ↗
+          </a>
+        </div>
+        <div class="ft-comment"># ~180 casos de test</div>
+      </div>
+
+      <div class="ft-dir">📁 users/ &amp; InvenTree/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ InvenTree/tests.py</span>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/InvenTree/tests.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            InvenTree/tests.py ↗
+          </a>
+        </div>
+        <div class="ft-comment"># Auth, permisos, config</div>
+      </div>
+
+      <div class="ft-dir">📁 plugin/</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ tests/test_plugin.py</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/plugin/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            plugin/tests ↗
+          </a>
+        </div>
+        <div class="ft-comment"># ~120 casos de test</div>
+      </div>
+
+      <div class="ft-dir" style="margin-top:10px;">📄 Configuración de CI</div>
+      <div class="ft-indent">
+        <div class="ft-file-row">
+          <span class="ft-file">✅ .github/workflows/qc_checks.yaml</span>
+          <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/qc_checks.yaml" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            .github/workflows/qc_checks.yaml ↗
+          </a>
+        </div>
+        <div class="ft-file-row">
+          <span class="ft-file">✅ .github/workflows/tests.yaml</span>
+          <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/tests.yaml" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            .github/workflows/tests.yaml ↗
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -314,9 +443,9 @@
     <h2>Pipeline de <span>CI/CD</span></h2>
     <div class="section-divider"></div>
     <p>
-      Cada Pull Request y cada push a las ramas principales dispara automáticamente
-      el pipeline de GitHub Actions. El pipeline ejecuta pruebas en múltiples versiones
-      de Python y con distintas bases de datos para máxima cobertura.
+      Cada Push o Pull Request dispara el pipeline de GitHub Actions automáticamente.
+      Puedes ver las ejecuciones en vivo en la sección
+      <a href="https://github.com/inventree/InvenTree/actions" target="_blank" style="color:#60a5fa;">Actions del repositorio ↗</a>.
     </p>
 
     <div class="pipeline">
@@ -346,82 +475,82 @@
       </div>
     </div>
 
-    <div class="cards" style="margin-top:28px;">
-      <div class="card">
-        <span class="card-icon">🔍</span>
-        <h3>Linting y Estilo</h3>
-        <ul>
-          <li>Flake8 para validación PEP8</li>
-          <li>isort para orden de imports</li>
-          <li>ESLint + Prettier para TypeScript/React</li>
-          <li>Falla el pipeline si hay violaciones</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="card-icon">🧪</span>
-        <h3>Ejecución de Tests</h3>
-        <ul>
-          <li>Python 3.9, 3.10 y 3.11 en paralelo</li>
-          <li>SQLite y PostgreSQL como backends</li>
-          <li>Base de datos creada desde cero en cada run</li>
-          <li>Variables de entorno inyectadas desde secrets</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="card-icon">📊</span>
-        <h3>Cobertura de Código</h3>
-        <ul>
-          <li>Reporte generado con coverage.py</li>
-          <li>Subida automática a Codecov</li>
-          <li>Badge de cobertura en el README</li>
-          <li>Umbral mínimo configurable</li>
-        </ul>
-      </div>
+    <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/tests.yaml" target="_blank" class="gh-link" style="font-size:12px;padding:6px 14px;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Ver tests.yaml en GitHub ↗
+      </a>
+      <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/qc_checks.yaml" target="_blank" class="gh-link" style="font-size:12px;padding:6px 14px;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Ver qc_checks.yaml en GitHub ↗
+      </a>
+      <a href="https://github.com/inventree/InvenTree/actions" target="_blank" class="gh-link" style="font-size:12px;padding:6px 14px;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Ver ejecuciones en Actions ↗
+      </a>
     </div>
   </div>
 
-  <!-- ── 4. Cobertura por módulo ────────────────── -->
+  <!-- ── 4. Cobertura ───────────────────────────── -->
   <div class="section-block fade-up">
     <h2>Cobertura por <span>Módulo</span></h2>
     <div class="section-divider"></div>
-    <p>
-      El sistema de cobertura mide el porcentaje de líneas de código ejecutadas
-      durante los tests. A continuación se muestra la cobertura estimada por módulo principal.
-    </p>
+    <p>Porcentaje estimado de líneas cubiertas por los tests en cada módulo principal.</p>
 
     <div class="coverage-grid">
       <div class="cov-row">
-        <span class="cov-name">part/</span>
+        <span class="cov-name">
+          part/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:91%"></div></div>
         <span class="cov-pct">91%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">stock/</span>
+        <span class="cov-name">
+          stock/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:88%"></div></div>
         <span class="cov-pct">88%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">build/</span>
+        <span class="cov-name">
+          build/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/build/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:85%"></div></div>
         <span class="cov-pct">85%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">order/</span>
+        <span class="cov-name">
+          order/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/order/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:87%"></div></div>
         <span class="cov-pct">87%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">company/</span>
+        <span class="cov-name">
+          company/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/company/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:83%"></div></div>
         <span class="cov-pct">83%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">users/</span>
+        <span class="cov-name">
+          users/
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/InvenTree/tests.py" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:92%"></div></div>
         <span class="cov-pct">92%</span>
       </div>
       <div class="cov-row">
-        <span class="cov-name">plugin/</span>
+        <span class="cov-name">
+          plugin/
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/plugin/tests" target="_blank" class="gh-link">↗</a>
+        </span>
         <div class="cov-bar-wrap"><div class="cov-bar" style="width:79%"></div></div>
         <span class="cov-pct">79%</span>
       </div>
@@ -433,79 +562,160 @@
     <h2>Pruebas <span>Unitarias</span></h2>
     <div class="section-divider"></div>
     <p>
-      Las pruebas unitarias verifican el comportamiento de componentes individuales
-      del sistema en aislamiento, usando base de datos en memoria y mocks para dependencias externas.
+      Verifican componentes individuales en aislamiento usando base de datos en memoria.
+      Cada tarjeta muestra los escenarios cubiertos con link directo al código en GitHub.
     </p>
 
     <div class="test-detail">
       <div class="test-detail-head">
-        <h3>📦 Módulo Part</h3>
-        <span class="badge badge-green">~450 tests</span>
+        <h3>📦 Módulo Part — Catálogo de Partes</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~450 tests</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests en GitHub ↗
+          </a>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/part/models.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver models.py ↗
+          </a>
+        </div>
       </div>
-      <p>Verifica la lógica central del catálogo de partes, incluyendo reglas de negocio complejas como la herencia de BOM entre variantes.</p>
+      <p>Verifica la lógica del catálogo de partes incluyendo reglas complejas como herencia de BOM entre variantes y detección de referencias circulares.</p>
       <ul>
-        <li>Creación de partes con todos los campos requeridos y opcionales</li>
-        <li>Validación de unicidad de nombre dentro de categoría</li>
+        <li>Creación de partes con validación de campos obligatorios y opcionales</li>
+        <li>Unicidad de nombre dentro de categoría — falla si hay duplicado</li>
         <li>Herencia de parámetros desde plantillas de categoría</li>
         <li>Cálculo de stock total disponible a partir de múltiples ubicaciones</li>
-        <li>Resolución de BOM en múltiples niveles (BOM recursivo)</li>
-        <li>Detección de referencias circulares en BOM</li>
-        <li>Activación y desactivación de partes con validación de dependencias</li>
-        <li>Asociación de imágenes y archivos adjuntos</li>
+        <li>Resolución de BOM en múltiples niveles (recursivo)</li>
+        <li>Detección de referencias circulares en BOM — debe lanzar error</li>
+        <li>Activación y desactivación de partes con validación de dependencias activas</li>
       </ul>
     </div>
 
     <div class="test-detail">
       <div class="test-detail-head">
-        <h3>📊 Módulo Stock</h3>
-        <span class="badge badge-green">~380 tests</span>
+        <h3>📊 Módulo Stock — Control de Inventario</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~380 tests</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests en GitHub ↗
+          </a>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/stock/models.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver models.py ↗
+          </a>
+        </div>
       </div>
-      <p>Cubre todos los movimientos posibles de inventario y la integridad de los datos de stock en cualquier estado del ciclo de vida.</p>
+      <p>Cubre todos los movimientos posibles de inventario y verifica la integridad de los datos de StockItem en cada estado del ciclo de vida.</p>
       <ul>
         <li>Creación de StockItem con cantidad, ubicación y número de serie</li>
-        <li>Transferencia entre ubicaciones con registro de historial</li>
-        <li>División de un StockItem en múltiples items (split)</li>
-        <li>Fusión de items del mismo Part en una ubicación (merge)</li>
-        <li>Ajuste de cantidades con motivo obligatorio</li>
-        <li>Validación de stock serializado: cada serial único por Part</li>
-        <li>Expiración de lotes y alertas de caducidad</li>
-        <li>Asignación de stock a órdenes de manufactura</li>
-        <li>Stock asignado vs. stock disponible</li>
+        <li>Transferencia entre ubicaciones — historial registrado correctamente</li>
+        <li>División (split) de un item en múltiples cantidades</li>
+        <li>Fusión (merge) de items del mismo Part en una ubicación</li>
+        <li>Ajuste de cantidad con motivo obligatorio — falla sin motivo</li>
+        <li>Unicidad de serial por Part — no permite dos seriales iguales</li>
+        <li>Stock asignado vs disponible — no permite asignar más del disponible</li>
       </ul>
     </div>
 
     <div class="test-detail">
       <div class="test-detail-head">
-        <h3>🏭 Módulo Build</h3>
-        <span class="badge badge-green">~290 tests</span>
+        <h3>🏭 Módulo Build — Órdenes de Manufactura</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~290 tests</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/build/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests en GitHub ↗
+          </a>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/build/models.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver models.py ↗
+          </a>
+        </div>
       </div>
-      <p>Valida el ciclo completo de una orden de manufactura desde su creación hasta la finalización y el impacto en el stock.</p>
+      <p>Valida el ciclo completo de una orden de manufactura desde creación hasta finalización y su impacto en el stock de componentes.</p>
       <ul>
-        <li>Creación de BuildOrder con cantidad objetivo</li>
-        <li>Generación automática de requerimientos desde BOM</li>
-        <li>Asignación de StockItems a líneas del Build</li>
-        <li>Validación de disponibilidad antes de iniciar</li>
-        <li>Consumo de stock al completar Build</li>
-        <li>Generación de StockItems de salida al completar</li>
-        <li>Cancelación con devolución de stock asignado</li>
-        <li>Builds en cascada para sub-ensamblajes</li>
+        <li>Generación automática de requerimientos desde BOM al crear BuildOrder</li>
+        <li>Validación de disponibilidad de stock antes de iniciar — bloqueo si falta material</li>
+        <li>Consumo correcto de StockItems al completar la orden</li>
+        <li>Generación de StockItems de salida (producto terminado) al completar</li>
+        <li>Cancelación con devolución del stock previamente asignado</li>
+        <li>Builds en cascada para sub-ensamblajes anidados</li>
       </ul>
     </div>
 
     <div class="test-detail">
       <div class="test-detail-head">
-        <h3>🔐 Módulo Users &amp; Auth</h3>
-        <span class="badge badge-green">~160 tests</span>
+        <h3>🛒 Módulo Order — Órdenes de Compra y Venta</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~310 tests</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/order/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests en GitHub ↗
+          </a>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/order/models.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver models.py ↗
+          </a>
+        </div>
       </div>
-      <p>Prueba el sistema de autenticación y autorización asegurando que los permisos se aplican correctamente en todos los módulos.</p>
+      <p>Cubre el ciclo de vida completo de órdenes de compra (PO), ventas (SO) y devoluciones (Return Orders).</p>
       <ul>
-        <li>Login con credenciales válidas e inválidas</li>
-        <li>Generación y revocación de tokens API</li>
-        <li>Denegación de acceso a recursos sin permisos</li>
-        <li>Herencia de permisos por grupo</li>
-        <li>Superusuario con acceso irrestricto</li>
-        <li>Bloqueo por intentos fallidos consecutivos</li>
-        <li>Acceso de solo lectura via token de solo lectura</li>
+        <li>Creación de PO con líneas de detalle y asociación a proveedor</li>
+        <li>Recepción parcial de mercancía — stock actualizado correctamente</li>
+        <li>Transición de estados: borrador → emitida → recibida — validación en cada paso</li>
+        <li>Bloqueo al intentar recibir más unidades que las pedidas</li>
+        <li>Return Orders — devolución de stock con registro en historial</li>
+        <li>Historial de precios por proveedor actualizado al recibir</li>
+      </ul>
+    </div>
+
+    <div class="test-detail">
+      <div class="test-detail-head">
+        <h3>🔐 Autenticación y Permisos</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~160 tests</span>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/InvenTree/tests.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests.py en GitHub ↗
+          </a>
+        </div>
+      </div>
+      <p>Prueba el sistema de autenticación y autorización garantizando que los permisos se aplican correctamente en todos los módulos.</p>
+      <ul>
+        <li>Login con credenciales válidas — devuelve token de sesión</li>
+        <li>Login con credenciales inválidas — HTTP 401</li>
+        <li>Generación y revocación de tokens API Bearer</li>
+        <li>Acceso a endpoint sin permiso — HTTP 403 Forbidden</li>
+        <li>Superusuario con acceso irrestricto a todos los módulos</li>
+        <li>Bloqueo automático por intentos fallidos consecutivos</li>
+      </ul>
+    </div>
+
+    <div class="test-detail">
+      <div class="test-detail-head">
+        <h3>🧩 Sistema de Plugins</h3>
+        <div class="test-detail-links">
+          <span class="badge badge-green">~120 tests</span>
+          <a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/plugin/tests" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver tests en GitHub ↗
+          </a>
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/InvenTree/plugin/plugin.py" target="_blank" class="gh-link">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Ver plugin.py ↗
+          </a>
+        </div>
+      </div>
+      <p>Verifica la arquitectura de plugins: carga, registro, hooks y que un plugin defectuoso no derrumbe el sistema.</p>
+      <ul>
+        <li>Carga de plugin válido — registrado correctamente en el sistema</li>
+        <li>Activación desde la interfaz de administración</li>
+        <li>Plugin con dependencias faltantes — falla con mensaje claro</li>
+        <li>Hooks de eventos (pre/post stock update) — ejecutados correctamente</li>
+        <li>Plugin defectuoso no interrumpe el funcionamiento del núcleo</li>
       </ul>
     </div>
   </div>
@@ -515,9 +725,8 @@
     <h2>Pruebas de <span>Integración API</span></h2>
     <div class="section-divider"></div>
     <p>
-      Las pruebas de integración usan el <strong style="color:#fff">APIClient de Django REST Framework</strong>
-      para simular peticiones HTTP reales contra todos los endpoints, verificando códigos de respuesta,
-      estructura del JSON y efectos secundarios en la base de datos.
+      Usan el <strong style="color:#fff">APIClient de Django REST Framework</strong> para simular peticiones HTTP reales.
+      Los archivos <code>test_api.py</code> de cada módulo están disponibles en GitHub.
     </p>
 
     <div class="table-wrap" style="margin-top:20px;">
@@ -525,59 +734,77 @@
         <thead>
           <tr>
             <th>Módulo</th>
+            <th>Endpoint</th>
+            <th>Método</th>
             <th>Escenario</th>
-            <th>Resultado esperado</th>
-            <th>Estado</th>
+            <th>Esperado</th>
+            <th>Código fuente</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Part API</td>
-            <td>GET /api/part/ sin autenticar</td>
-            <td>HTTP 403 Forbidden</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Part</td>
+            <td><code>/api/part/</code></td>
+            <td><span class="method get">GET</span></td>
+            <td>Sin autenticar</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">403</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Part API</td>
-            <td>POST /api/part/ con datos válidos</td>
-            <td>HTTP 201 + objeto creado</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Part</td>
+            <td><code>/api/part/</code></td>
+            <td><span class="method post">POST</span></td>
+            <td>Datos válidos</td>
+            <td><span style="color:#4ade80;font-family:var(--mono);font-size:12px;">201</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Part API</td>
-            <td>POST /api/part/ con name duplicado</td>
-            <td>HTTP 400 + error de validación</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Part</td>
+            <td><code>/api/part/</code></td>
+            <td><span class="method post">POST</span></td>
+            <td>Nombre duplicado</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">400</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/part/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Stock API</td>
-            <td>POST /api/stock/transfer/ sin stock disponible</td>
-            <td>HTTP 400 + mensaje de error</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Stock</td>
+            <td><code>/api/stock/transfer/</code></td>
+            <td><span class="method post">POST</span></td>
+            <td>Sin stock disponible</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">400</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Stock API</td>
-            <td>GET /api/stock/?location=5 con filtro</td>
-            <td>HTTP 200 + lista filtrada</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Stock</td>
+            <td><code>/api/stock/?location=5</code></td>
+            <td><span class="method get">GET</span></td>
+            <td>Filtro por ubicación</td>
+            <td><span style="color:#4ade80;font-family:var(--mono);font-size:12px;">200</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/stock/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Build API</td>
-            <td>POST completar Build sin stock asignado</td>
-            <td>HTTP 400 + validación BOM</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Build</td>
+            <td><code>/api/build/{id}/finish/</code></td>
+            <td><span class="method post">POST</span></td>
+            <td>Sin stock asignado</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">400</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/build/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Order API</td>
-            <td>PUT estado PO a "recibida" con líneas pendientes</td>
-            <td>HTTP 400 + líneas sin recibir</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Order</td>
+            <td><code>/api/order/po/{id}/</code></td>
+            <td><span class="method put">PUT</span></td>
+            <td>Estado a "recibida" con líneas pendientes</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">400</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/order/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
           <tr>
-            <td>Plugin API</td>
-            <td>Activar plugin con dependencias faltantes</td>
-            <td>HTTP 400 + error de dependencia</td>
-            <td><span class="pass">PASS</span></td>
+            <td>Plugin</td>
+            <td><code>/api/plugin/</code></td>
+            <td><span class="method post">POST</span></td>
+            <td>Activar con dependencias faltantes</td>
+            <td><span style="color:#f87171;font-family:var(--mono);font-size:12px;">400</span></td>
+            <td><a href="https://github.com/inventree/InvenTree/tree/master/src/backend/InvenTree/plugin/tests" target="_blank" class="gh-link">test_api.py ↗</a></td>
           </tr>
         </tbody>
       </table>
@@ -593,32 +820,34 @@
       <div class="card">
         <span class="card-icon">🐍</span>
         <h3>pytest + pytest-django</h3>
-        <p>Runner de pruebas principal. El plugin pytest-django añade fixtures de base de datos, cliente de test y gestión de settings de Django.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🌐</span>
-        <h3>Django Test Client</h3>
-        <p>Cliente HTTP simulado integrado en Django. Permite hacer GET, POST, PUT y DELETE a vistas y endpoints sin levantar un servidor real.</p>
+        <p>Runner principal. El plugin pytest-django añade fixtures de BD, cliente de test y gestión de settings de Django.</p>
+        <div style="margin-top:12px;">
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/requirements.txt" target="_blank" class="gh-link">Ver requirements.txt ↗</a>
+        </div>
       </div>
       <div class="card">
         <span class="card-icon">📊</span>
         <h3>coverage.py</h3>
-        <p>Mide qué líneas de código son ejecutadas durante los tests. Genera reportes HTML y XML para análisis de cobertura por archivo y módulo.</p>
+        <p>Mide líneas ejecutadas durante los tests. Genera reportes HTML y XML, subidos automáticamente a Codecov.</p>
+        <div style="margin-top:12px;">
+          <a href="https://github.com/inventree/InvenTree/blob/master/src/backend/setup.cfg" target="_blank" class="gh-link">Ver setup.cfg ↗</a>
+        </div>
       </div>
       <div class="card">
         <span class="card-icon">🚀</span>
         <h3>GitHub Actions</h3>
-        <p>Orquesta el pipeline CI/CD. Ejecuta los tests automáticamente en cada PR usando matrices de versiones Python y múltiples backends de BD.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🐳</span>
-        <h3>Docker en CI</h3>
-        <p>Los tests críticos de integración se ejecutan dentro de contenedores Docker para garantizar reproducibilidad total del entorno.</p>
+        <p>Orquesta el pipeline CI/CD. Tests en matriz de versiones Python y múltiples backends de BD por cada PR.</p>
+        <div style="margin-top:12px;">
+          <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/tests.yaml" target="_blank" class="gh-link">Ver tests.yaml ↗</a>
+        </div>
       </div>
       <div class="card">
         <span class="card-icon">🔍</span>
         <h3>Flake8 + isort</h3>
-        <p>Análisis estático de código. Flake8 verifica conformidad PEP8, complejidad ciclomática e imports no usados. isort ordena los imports.</p>
+        <p>Análisis estático. Flake8 valida PEP8 y complejidad ciclomática. isort ordena imports automáticamente.</p>
+        <div style="margin-top:12px;">
+          <a href="https://github.com/inventree/InvenTree/blob/master/.github/workflows/qc_checks.yaml" target="_blank" class="gh-link">Ver qc_checks.yaml ↗</a>
+        </div>
       </div>
     </div>
   </div>
@@ -628,13 +857,12 @@
     <h2>Conclusiones del <span>Análisis</span></h2>
     <div class="section-divider"></div>
     <ul class="prose-list">
-      <li>InvenTree mantiene más de 2000 casos de test que cubren los flujos críticos de todos los módulos principales.</li>
-      <li>El uso de pytest + django permite pruebas aisladas, rápidas y altamente parametrizables.</li>
-      <li>El pipeline de GitHub Actions garantiza que cada cambio es validado automáticamente antes de ser mergeado.</li>
-      <li>Las pruebas de API cubren tanto los casos de éxito como los de fallo, verificando respuestas y efectos en BD.</li>
-      <li>La cobertura promedio supera el 85% en los módulos core, lo que es un estándar elevado para proyectos Open Source.</li>
-      <li>El sistema de tests facilita el desarrollo colaborativo: cualquier contribuidor puede validar su cambio localmente antes de abrir un PR.</li>
-      <li>La matriz de versiones Python en CI detecta incompatibilidades antes de que lleguen a producción.</li>
+      <li>Más de 2000 casos de test cubren todos los módulos críticos con cobertura promedio superior al 85%.</li>
+      <li>Cada módulo tiene su propio directorio de tests accesible directamente en el repositorio GitHub.</li>
+      <li>El pipeline de GitHub Actions valida automáticamente cada PR antes de permitir el merge.</li>
+      <li>La separación entre <code>tests.py</code> (unitarios) y <code>test_api.py</code> (integración) mantiene los tests organizados y enfocados.</li>
+      <li>Las pruebas de API verifican tanto casos de éxito como de fallo, asegurando que los errores devuelven los códigos HTTP correctos.</li>
+      <li>El sistema de testing facilita la contribución externa: cualquier colaborador puede correr la suite completa localmente antes de abrir un PR.</li>
     </ul>
   </div>
 
