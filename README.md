@@ -117,7 +117,7 @@ Re-ejecución de la suite de pruebas unitarias oficial de InvenTree (Django Test
 | Archivo con mayor cobertura | `stock/tests.py` — 96% |
 | Archivo con menor cobertura | `build/models.py` — 34% |
 | Test más lento | `test_shipment_many_items` (order) — 114.57 s, ~32% del tiempo total |
-| Ubicación en Wiki | [1. Plan de Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/1.-Plan-de-Pruebas-Unitarias) · [2. Informe Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/2.-Informe-Pruebas-Unitarias) |
+| Ubicación en Wiki | [1. Plan de Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/1.-Plan-de-Pruebas-Unitarias) · [2. Informe Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/2.-Informe-Pruebas-Unitarias) · [3. Informe Pruebas Unitarias Linux](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/2.1.-Informe-Pruebas-Unitarias-en-Linux)|
 
 ### 2. Pruebas funcionales — Plan, Diseño y 3 Informes de Ejecución
 
@@ -154,7 +154,7 @@ Documento que mapea las 6 capas de integración del sistema (ORM↔BD real, API�
 | Jobs del CI oficial mapeados | 12 (`coverage`, `postgres`, `mysql`, `python`, `migration-tests`, `migrations-checks`, `schema`, `code-style`, `typecheck`, `zizmor`, + jobs de `frontend.yaml`) |
 | Estrategia de integración elegida | Incremental Top-Down, CI-Driven (sin escribir tests nuevos — re-ejecución de los existentes) |
 | Ubicación en Wiki | [5. Plan de Pruebas de Integración](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/5.-Plan-de-Pruebas-de-Integraci%C3%B3n) |
-| Estado del Informe de Integración | Pendiente — página creada en la Wiki pero sin contenido aún; ejecución y redacción programadas para el Hito 3 |
+| Estado del Informe de Integración | Plan de pruebas de integración más no la ejecución que sera para el Hito 3 |
 
 ### 5. Implementación del proceso de pruebas con CI/CD
 
@@ -173,12 +173,13 @@ Documento que mapea las 6 capas de integración del sistema (ORM↔BD real, API�
 | — | [Home](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki) | Bienvenida del equipo |
 | 1 | [Plan de Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/1.-Plan-de-Pruebas-Unitarias) | Alcance, glosario, módulos del backend, registro de riesgos técnicos, estrategia y comandos de `invoke dev.test` |
 | 2 | [Informe Pruebas Unitarias](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/2.-Informe-Pruebas-Unitarias) | Resultados de 451 tests ejecutados, cobertura por archivo, catálogo de defectos D-01 a D-03, tests más lentos |
+| 2 | [Informe Pruebas Unitarias en Linux](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/2.1.-Informe-Pruebas-Unitarias-en-Linux) | Resultados de los tests ejecutados, cobertura por archivo, catálogo de defectos en Linux |
 | 3 | [Plan de Pruebas Funcionales](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/3.-Plan-de-Pruebas-Funcionales) | Los 75 casos CPF-001 a CPF-009 con técnicas PE/AVL/TD/TS y matriz de trazabilidad |
 | 4 | [Informe de Pruebas Funcionales 1](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-1) | Ejecución Login + Partes — 15/15 PASS |
 | 4 | [Informe de Pruebas Funcionales 2](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-2) | Ejecución Stock Items + Transferencias — 16/17 PASS |
 | 4 | [Informe de Pruebas Funcionales 3](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-3) | Ejecución Purchase Order + Build Order — 19/20 PASS |
 | 5 | [Plan de Pruebas de Integración](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/5.-Plan-de-Pruebas-de-Integraci%C3%B3n) | Mapeo completo del pipeline CI/CD oficial, 40 casos INT-001 a INT-040, registro de riesgos, RACI del equipo |
-| 6 | [Informe de Pruebas de Integracion](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/6.-Informe-de-Pruebas-de-Integracion) | Página creada, contenido pendiente — se completará en el Hito 3 |
+| 6 | [Informe de Pruebas de Integracion](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/6.-Informe-de-Pruebas-de-Integracion) | Plan de pruebas de integración más no la ejecución que sera para el Hito 3 |
 
 ---
 
