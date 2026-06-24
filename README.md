@@ -205,6 +205,7 @@ Según consta en el Plan de Pruebas de Integración (Wiki, página 5):
 3. **Para ver el avance y las tareas del Sprint** → [GitHub Project](https://github.com/users/jrolando19/projects/4).
 4. **Para ver los defectos encontrados** → [GitHub Issues](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/issues).
 5. **Para ejecutar las pruebas localmente** → clona el fork [InvenTree-VIUDANEGRA](https://github.com/jrolando19/InvenTree-VIUDANEGRA) y sigue las instrucciones de despliegue con Docker del [repositorio original](https://github.com/inventree/InvenTree).
+6. **Drive de los documentos** ->[Google Drive Hito 2](https://drive.google.com/drive/u/1/folders/1Ovb5tQkqdMinPjdED7dTXPFBhfEnd6sq).
 
 ---
 
