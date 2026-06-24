@@ -125,9 +125,9 @@ Diseño de 75 casos de prueba de caja negra (CPF-001 a CPF-009) aplicando Partic
 
 | Informe (Wiki) | Módulos | Casos | Resultado |
 | --- | --- | --- | --- |
-| [4. Informe de Pruebas Funcionales 1](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-1) | Login/Autenticación + Gestión de Partes | 15 | 15/15 PASS (100%) |
-| [4. Informe de Pruebas Funcionales 2](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-2) | Stock Items + Transferencias | 17 | 16/17 PASS (94.1%) |
-| [4. Informe de Pruebas Funcionales 3](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.-Informe-de-Pruebas-Funcionales-3) | Purchase Order + Build Order | 20 | 19/20 PASS (95%) |
+| [4. Informe de Pruebas Funcionales 1](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.1.-Informe-de-Pruebas-Funcionales-1) | Login/Autenticación + Gestión de Partes | 15 | 15/15 PASS (100%) |
+| [4. Informe de Pruebas Funcionales 2](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.2.-Informe-de-Pruebas-Funcionales-2) | Stock Items + Transferencias | 17 | 16/17 PASS (94.1%) |
+| [4. Informe de Pruebas Funcionales 3](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/4.3.-Informe-de-Pruebas-Funcionales-3) | Purchase Order + Build Order | 20 | 19/20 PASS (95%) |
 | **Total ejecutado** | 5 módulos | **52** | **50 PASS / 2 FAIL — 96.2%** |
 
 > El diseño completo (75 casos) está documentado en [3. Plan de Pruebas Funcionales](https://github.com/jrolando19/VIUDA_NEGRA_PROJECT/wiki/3.-Plan-de-Pruebas-Funcionales). Los módulos de BOM (8 casos) y Proveedores (7 casos) están diseñados pero su ejecución queda pendiente para el Hito 3, junto con Sales Orders, Clientes y Búsqueda Global (aún no diseñados).
