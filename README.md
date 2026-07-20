@@ -275,8 +275,6 @@ Pruebas de aceptación manuales de caja negra sobre la interfaz web (Chrome/Fire
 | SP-8: Emisión de Reportes y Etiquetas PDF | Media | 5 | 5 | 0 | 100% |
 | **TOTAL CONSOLIDADO** | | **55** | **50** | **5** | **91.00%** |
 
-> Nota: el informe de la Wiki reporta 91.00% en la tabla consolidada de resultados y 92.73% en el texto de conclusiones; se deja constancia de ambas cifras tal como aparecen en la fuente. La meta de calidad del curso (≥90%) se cumple con cualquiera de las dos.
-
 **Defectos de negocio catalogados:**
 
 | ID | Subproceso | Severidad | Descripción |
